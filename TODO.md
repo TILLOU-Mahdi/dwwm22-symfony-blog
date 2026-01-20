@@ -18,7 +18,7 @@
 
 2. Vérifier la logique
     - ```php vendor/bin/phpstan analyse```
-    - Ignorer les erreurs qui en réalité ne le sont pas, dans le fichier de configuration de php stan (il faut que les deux dernières lignes soient entière donc pas de word wrap)
+    - Ignorer les erreurs qui en réalité ne le sont pas, dans le fichier de configuration de php stan (il faut que les 2 dernieres lignes soient chacune sur une ligne entière)
         - ```
             parameters:
                 level: 6
@@ -40,7 +40,7 @@
     - Sauvegarder l'application
         - ```git commit -m "Message du commit"```
     - Envoyer le code sur la branche créée
-        - ```git push origin ...```
+        - ```git push --set-upstream origin nom-de-la-branche```
     - Proposer ce code pour la fusion 
         - (Pull Request)
     - Après la revue de code, fusionner le brouillon (branche) au main 
