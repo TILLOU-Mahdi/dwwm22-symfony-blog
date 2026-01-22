@@ -45,7 +45,7 @@
                 See note below about the "defer" attribute -->
         {% endblock %}
 </head>
-    <body class="bg-primary">
+    <body class="bg-primary body-visitor">
 
         {# Navbar #}
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -82,7 +82,13 @@
             </nav>
 
         {# Main #}
+            <main>
+                {% block main %}{% endblock %}
+            </main>
 
         {# Footer #}
+            <footer class="text-center">
+                <p>DWWM22 (footer)</p>
+            </footer>
     </body>
 </html>
