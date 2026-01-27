@@ -33,23 +33,21 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">        
     </head>
-    <body>
-        <main>  
+    <body class="jd-auth-bg">
+        <main>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
                         <img class="img-fluid" src="/images/static/doctor-inscription.png" alt="Docteur Jean Dupont vous invite à vous inscrire">
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
                         <h1 class="text-center my-3">Inscription</h1>
 
-
-                         {% for flash_error in app.flashes('verify_email_error') %}
+                        {% for flash_error in app.flashes('verify_email_error') %}
                             <div class="alert alert-danger text-center" role="alert">{{ flash_error }}</div>
-                         {% endfor %}
+                        {% endfor %}
 
-
-                        {{form_start(registrationForm)}}
+                        {{form_start(registrationForm, {'attr': {'class':'w-75'}})}}
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
@@ -61,14 +59,14 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="registration_form_lastName">Nom <span class="text-danger">*</span></label>
-                                         <div class="text-danger">{{form_errors(registrationForm.lastName)}}</div>
+                                        <div class="text-danger">{{form_errors(registrationForm.lastName)}}</div>
                                         {{form_widget(registrationForm.lastName, {'attr': {'class':'form-control'}})}}
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="registration_form_email">Email <span class="text-danger">*</span></label>
-                                <div class="text-danger">{{form_errors(registrationForm.email)}}</div>
+                                    <div class="text-danger">{{form_errors(registrationForm.email)}}</div>
                                 {{form_widget(registrationForm.email, {'attr': {'class':'form-control'}})}}
                             </div>
                             <div class="mb-3">
@@ -79,7 +77,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="registration_form_password_second">Confirmation du mot de passe <span class="text-danger">*</span></label>
-                                <div class="text-danger">{{form_errors(registrationForm.password.first)}}</div>
+                                <div class="text-danger">{{form_errors(registrationForm.password.second)}}</div>
                                 {{form_widget(registrationForm.password.second, {'attr': {'class':'form-control'}})}}
                             </div>
                             <div class="mb-3">
@@ -88,16 +86,16 @@
                                     Lire et accepter <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">les conditions générales d'utilisation</a>
                                 </label>
 
-                                 <!-- Modal -->
+                                <!-- Modal -->
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-scrollable">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h2 class="modal-title fs-5" id="staticBackdropLabel">Les conditions générales d'utilisation</h2>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                        <div class="modal-body">
-                                               <div class="cgu-container">
+                                    <div class="modal-dialog modal-dialog-scrollable">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h2 class="modal-title fs-5" id="staticBackdropLabel">Les conditions générales d'utilisation</h2>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="cgu-container">
 
                                                     <header>
                                                         <p><strong>Dernière mise à jour :</strong> 17 mai 2025</p>
@@ -264,11 +262,11 @@
                                                     </footer>
                                                 </div>
                                             </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 </div>
                             </div>
                             <div>
@@ -277,7 +275,7 @@
                         {{form_end(registrationForm)}}
 
                         <div class="d-flex flex-column justify-content-center align-items-center my-4">
-                            <p>Vous avez déjà un compte? <a href="">Connectez-vous</a></p>
+                            <p>Vous avez déjà un compte? <a href="{{path('app_login')}}">Connectez-vous</a></p>
                             <p><a href="{{path('app_visitor_welcome')}}">Retour à l'accueil</a></p>
                         </div>
                     </div>
