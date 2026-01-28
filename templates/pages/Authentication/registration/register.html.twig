@@ -81,6 +81,7 @@
                                 {{form_widget(registrationForm.password.second, {'attr': {'class':'form-control'}})}}
                             </div>
                             <div class="mb-3">
+                            <div class="text-danger">{{form_errors(registrationForm.agreeTerms)}}</div>
                                 {{form_widget(registrationForm.agreeTerms)}} 
                                 <label for="registration_form_agreeTerms">
                                     Lire et accepter <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">les conditions générales d'utilisation</a>
