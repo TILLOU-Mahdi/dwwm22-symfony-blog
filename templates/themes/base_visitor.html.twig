@@ -30,7 +30,7 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
-        {% endblock %}*
+        {% endblock %}
 
          {# Favicon #}
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
@@ -69,6 +69,18 @@
 
                         <ul class="navbar-nav ms-auto">
                             {% if app.user %}
+                                {% if is_granted ('ROLE_ADMIN') %}
+                                        <li class="nav-item">
+                                        <a href="{{path('app_admin_home')}}" class="nav-link" >Espace admin</a>
+                                        </li>
+                                 {% endif %}
+                                 {% if is_granted ('ROLE_USER') %}
+                                        <li class="nav-item">
+                                        <a href="{{path('app_user_home')}}" class="nav-link" >Espace privé</a>
+                                        </li>
+                                 {% endif %}
+
+
                                 <li class="nav-item">
                                 <a href="{{path('app_logout')}}" class="nav-link" >Déconnexion</a>
                                 </li>

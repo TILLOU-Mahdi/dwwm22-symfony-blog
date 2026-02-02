@@ -17,7 +17,7 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
-        {% endblock %}*
+        {% endblock %}
         
          {# Favicon #}
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
@@ -197,7 +197,7 @@
                         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                             <ul class="nav flex-column">
                                 <li class="nav-item"> 
-                                    <a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
+                                    <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_admin_home')}}">
                                         
                                         <i class="fa-regular fa-house"></i>
                                         Tableau de bord
@@ -246,15 +246,15 @@
                             <hr class="my-3">
 
                             <ul class="nav flex-column mb-auto">
-                                <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
+                                <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_user_home')}}">
                                     <i class="fa-solid fa-house-user"></i>
                                         Espace utilisateur
                                     </a> </li>
-                                <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
+                                <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_visitor_welcome')}}">
                                     <i class="fa-solid fa-circle-arrow-left"></i>
                                         Retour au site
                                     </a> </li>
-                                <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
+                                <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_logout')}}">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                         Déconnexion
                                     </a> </li>
