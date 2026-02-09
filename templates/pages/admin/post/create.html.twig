@@ -1,0 +1,30 @@
+{% extends "themes/base_admin.html.twig" %}
+
+{% block title %}Nouvel article{% endblock %}
+
+{% block description %}Ajouter un nouvel article à la liste{% endblock %}
+
+{% block keywords %}Ajouter, nouvel, article{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Nouvel article</h1>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+             {#   {{ form_start(categoryForm) }}
+                    <div class="mb-3">
+                        <label for="category_form_name">Nom: </label>
+                        <div class="text-danger">{{form_errors(categoryForm.name)}}</div>
+                        {{form_widget(categoryForm.name, {'attr': {'class':'form-control', 'autofocus':'autofocus'}})}}
+                    </div>
+                    <div>
+                        <input formnovalidate type="submit" class="btn btn-success shadow" value="Ajouter">
+                    </div>
+                {{ form_end(categoryForm) }}
+               #} 
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
