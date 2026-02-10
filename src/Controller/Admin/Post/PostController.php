@@ -3,20 +3,26 @@
 namespace App\Controller\Admin\Post;
 
 use App\Entity\Post;
+use App\Entity\User;
 use App\Form\Admin\PostFormType;
+use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin')]
 final class PostController extends AbstractController
 {
     #[Route('/post/index', name: 'app_admin_post_index', methods: ['GET'])]
-    public function index(): Response
+    public function index(PostRepository $postRepository): Response
     {
-        return $this->render('pages/admin/post/index.html.twig');
+        $posts = $postRepository->findAll();
+
+        return $this->render('pages/admin/post/index.html.twig', [
+            'posts' => $posts,
+        ]);
     }
 
     #[Route('/post/create', name: 'app_admin_post_create', methods: ['GET', 'POST'])]
@@ -28,6 +34,11 @@ final class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+        /** @var User*/
+            $admin = $this->getUser();
+            $post->setUser($admin);
+
             $post->setCreatedAt(new \DateTimeImmutable());
             $post->setUpdatedAt(new \DateTimeImmutable());
 
