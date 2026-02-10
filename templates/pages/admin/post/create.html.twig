@@ -6,23 +6,57 @@
 
 {% block keywords %}Ajouter, nouvel, article{% endblock %}
 
+{% block tiny_mce %}
+<script src="https://cdn.tiny.cloud/1/fg73g9g1mv10pdp4wclzpkrrkkamrhg0i4datg5yv0kxa241/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea' //on ne met pas de id='tiny' ni de #tiny car on a qu'un textarea
+    });
+</script>
+{% endblock %}
+
 {% block main %}
     <h1 class="text-center my-3 display-5">Nouvel article</h1>
 
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-6 mx-auto">
-             {#   {{ form_start(categoryForm) }}
+            <div class="col-md-10 mx-auto bg-light shadow p-4">
+                {{ form_start(postForm) }}
                     <div class="mb-3">
-                        <label for="category_form_name">Nom: </label>
-                        <div class="text-danger">{{form_errors(categoryForm.name)}}</div>
-                        {{form_widget(categoryForm.name, {'attr': {'class':'form-control', 'autofocus':'autofocus'}})}}
+                        <label for="post_form_title">Titre <span class="text-danger">*</span> </label>
+                        <div class="text-danger">{{form_errors(postForm.title)}}</div>
+                        {{form_widget(postForm.title, {'attr': {'class':'form-control', 'autofocus':'autofocus'}})}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="post_form_category">Categorie <span class="text-danger">*</span> </label>
+                        <div class="text-danger">{{form_errors(postForm.category)}}</div>
+                        {{form_widget(postForm.category, {'attr': {'class':'form-control'}})}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="post_form_description">Description <span class="text-danger">*</span> </label>
+                        <div class="text-danger">{{form_errors(postForm.description)}}</div>
+                        {{form_widget(postForm.description, {'attr': {'class':'form-control'}})}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="post_form_keywords">Mots clés</label>
+                        <div class="text-danger">{{form_errors(postForm.keywords)}}</div>
+                        {{form_widget(postForm.keywords, {'attr': {'class':'form-control'}})}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="post_form_imageFile">Image</label> {#là on utilise imageFile au lieu de image car on a utilisé vich uploader bundle#}
+                        <div class="text-danger">{{form_errors(postForm.imageFile)}}</div>
+                        {{form_widget(postForm.imageFile, {'attr': {'class':'form-control'}})}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="post_form_content">Contenu <span class="text-danger">*</span></label>
+                        <div class="text-danger">{{form_errors(postForm.content)}}</div>
+                        {{form_widget(postForm.content, {'attr': {'class':'form-control', 'rows': 15}})}}
                     </div>
                     <div>
-                        <input formnovalidate type="submit" class="btn btn-success shadow" value="Ajouter">
+                        <input formnovalidate type="submit" class="btn btn-info shadow" value="Sauvegarder">
                     </div>
-                {{ form_end(categoryForm) }}
-               #} 
+                {{ form_end(postForm) }}
+              
             </div>
         </div>
     </div>
