@@ -75,4 +75,16 @@ final class TagController extends AbstractController
             'tagForm' => $form->createView(),
         ]);
     }
+
+    #[Route('/tag/{id<\d+>}/delete', name: 'app_admin_tag_delete', methods: ['POST'])]
+    public function delete(Tag $tag, Request $request): Response
+    {
+        if ($this->isCsrfTokenValid("tag-{$tag->getId()}", $request->request->get('csrf_token'))) {
+            $this->entityManager->remove($tag);
+            $this->entityManager->flush();
+            $this->addFlash('success', 'Le tag est supprimé');
+        }
+
+        return $this->redirectToRoute('app_admin_tag_index');
+    }
 }
