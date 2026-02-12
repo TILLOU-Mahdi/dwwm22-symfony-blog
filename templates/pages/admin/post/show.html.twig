@@ -2,9 +2,13 @@
 
 {% block title %}Les détails de l'article {{post.id}}: {{post.title}}{% endblock %}
 
-{% block description %}Consultation des détails de cet article de la liste{% endblock %}
+{% block description %}{{post.description}}{% endblock %}
 
-{% block keywords %}Consulter, détails, article{% endblock %}
+{% block keywords %}
+    {% if post.keywords %}
+        <meta name="keywords" content="{{post.keywords}}">
+    {% endif %}
+{% endblock %}
 
 {% block main %}
     <h1 class="text-center my-3 display-5">Les détails de cet article</h1>
