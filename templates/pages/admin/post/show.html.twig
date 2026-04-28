@@ -1,6 +1,6 @@
 {% extends "themes/base_admin.html.twig" %}
 
-{% block title %}Les détails de l'article {{post.id}}: {{post.title}}{% endblock %}
+{% block title %}Détails de la publication {{post.id}} : {{post.title}}{% endblock %}
 
 {% block description %}{{post.description}}{% endblock %}
 
@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Les détails de cet article</h1>
+    <h1 class="text-center my-3 display-5">Détails de cette œuvre commentée</h1>
 
     <div class="container text-center">
         {% if post.image %}

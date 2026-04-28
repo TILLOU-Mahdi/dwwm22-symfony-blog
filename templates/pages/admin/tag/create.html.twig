@@ -1,22 +1,22 @@
 {% extends "themes/base_admin.html.twig" %}
 
-{% block title %}Nouveau Tag{% endblock %}
+{% block title %}Nouveau thème{% endblock %}
 
-{% block description %}Ajouter d'un Tag à la liste{% endblock %}
+{% block description %}Ajouter un artiste, un thème ou une émotion{% endblock %}
 
 {% block keywords %}
     <meta name="keywords" content="ajouter, nouveau, tag">
 {% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Nouveau Tag</h1>
+    <h1 class="text-center my-3 display-5">Nouveau thème artistique</h1>
 
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6 mx-auto">
                 {{ form_start(tagForm) }}
                     <div class="mb-3">
-                        <label for="tag_form_name">Nom: </label>
+                        <label for="tag_form_name">Nom de l’artiste, du thème ou de l’émotion: </label>
                         <div class="text-danger">{{form_errors(tagForm.name)}}</div>
                         {{form_widget(tagForm.name, {'attr': {'class':'form-control', 'autofocus':'autofocus'}})}}
                     </div>

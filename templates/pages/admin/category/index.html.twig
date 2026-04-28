@@ -1,8 +1,8 @@
 {% extends "themes/base_admin.html.twig" %}
 
-{% block title %}Liste des catégories{% endblock %}
+{% block title %}Liste des courants artistiques{% endblock %}
 
-{% block description %}Consultez la liste des catégories{% endblock %}
+{% block description %}Consultez la liste des courants artistiques{% endblock %}
 
 {% block keywords %}
     <meta name="keywords" content="Consultation, lecture, liste, catégories">
@@ -27,12 +27,12 @@
 {% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Liste des catégories</h1>
+    <h1 class="text-center my-3 display-5">Liste des courants artistiques</h1>
 
     {% include 'components/alert.html.twig' %}
 
     <div class="d-flex justify-content-end align-items-center my-3">
-        <a href="{{path('app_admin_category_create')}}" class="btn btn-primary shadow"><i class="fa-solid fa-plus"></i> Nouvelle catégorie</a>
+        <a href="{{path('app_admin_category_create')}}" class="btn btn-primary shadow"><i class="fa-solid fa-plus"></i> Nouveau courant artistique</a>
     </div>
 
     <div class="table-responsive">

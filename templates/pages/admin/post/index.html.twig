@@ -1,10 +1,10 @@
 {% extends "themes/base_admin.html.twig" %}
 
-{% block title %}Liste des articles{% endblock %}
+{% block title %}Liste des publications{% endblock %}
 
-{% block description %}Consultez la liste des articles{% endblock %}
+{% block description %}Consultez la liste des œuvres commentées{% endblock %}
 
-{% block keywords %}Consultation, lecture, liste, articles{% endblock %}
+{% block keywords %}Consultation, lecture, liste, oeuvre, tableau{% endblock %}
 
 {% block j_query %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -25,12 +25,12 @@
 {% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Liste des articles</h1>
+    <h1 class="text-center my-3 display-5">Liste des publications artistiques</h1>
 
     {% include 'components/alert.html.twig' %}
 
     <div class="d-flex justify-content-end align-items-center my-3">
-        <a href="{{path('app_admin_post_create')}}" class="btn btn-primary shadow"><i class="fa-solid fa-plus"></i> Nouvel article</a>
+        <a href="{{path('app_admin_post_create')}}" class="btn btn-primary shadow"><i class="fa-solid fa-plus"></i>Nouvelle publication</a>
     </div>
 
     
@@ -40,8 +40,8 @@
                 <tr>
                     <th>Image</th>
                     <th>Titre</th>
-                    <th>Catégorie</th>
-                    <th>Tags</th>
+                    <th>Courant artistique</th>
+                    <th>Artiste / Thème</th>
                     <th>Statut</th>
                     <th>Créé le</th>
                     <th>Options</th>

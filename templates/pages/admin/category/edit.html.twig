@@ -1,22 +1,22 @@
 {% extends "themes/base_admin.html.twig" %}
 
-{% block title %}Modifier cette catégorie{% endblock %}
+{% block title %}Modifier ce courant artistique{% endblock %}
 
-{% block description %}Modifier cette catégorie de la liste{% endblock %}
+{% block description %}Modifier ce courant artistique{% endblock %}
 
 {% block keywords %}
  <meta name="keywords" content="modifier, catégorie">
 {% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Modifier cette catégorie</h1>
+    <h1 class="text-center my-3 display-5">Modifier ce courant artistique</h1>
 
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6 mx-auto">
                 {{ form_start(categoryForm) }}
                     <div class="mb-3">
-                        <label for="category_form_name">Nom: </label>
+                        <label for="category_form_name">Nom du courant artistique: </label>
                         <div class="text-danger">{{form_errors(categoryForm.name)}}</div>
                         {{form_widget(categoryForm.name, {'attr': {'class':'form-control', 'autofocus':'autofocus'}})}}
                     </div>

@@ -1,8 +1,8 @@
 {% extends "themes/base_admin.html.twig" %}
 
-{% block title %}Nouvel article{% endblock %}
+{% block title %}Nouvelle publication{% endblock %}
 
-{% block description %}Ajouter un nouvel article à la liste{% endblock %}
+{% block description %}Ajouter une nouvelle œuvre commentée{% endblock %}
 
 {% block keywords %}
     <meta name="keywords" content="ajouter, article">
@@ -32,7 +32,7 @@
 {% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Nouvel article</h1>
+    <h1 class="text-center my-3 display-5">Nouvelle publication artistique</h1>
 
     <div class="container mt-5">
         <div class="row">
@@ -44,17 +44,17 @@
                         {{form_widget(postForm.title, {'attr': {'class':'form-control', 'autofocus':'autofocus'}})}}
                     </div>
                     <div class="mb-3">
-                        <label for="post_form_category">Categorie <span class="text-danger">*</span> </label>
+                        <label for="post_form_category">Courant artistique<span class="text-danger">*</span> </label>
                         <div class="text-danger">{{form_errors(postForm.category)}}</div>
                         {{form_widget(postForm.category, {'attr': {'class':'form-control'}})}}
                     </div>
                     <div class="mb-3">
-                        <label for="post_form_tags">Tags</label>
+                        <label for="post_form_tags">Artiste, thème ou émotion</label>
                         <div class="text-danger">{{form_errors(postForm.tags)}}</div>
                         {{form_widget(postForm.tags, {'attr': {'class':'form-control'}})}}
                     </div>
                     <div class="mb-3">
-                        <label for="post_form_description">Description <span class="text-danger">*</span> </label>
+                        <label for="post_form_description">Résumé de l’œuvre <span class="text-danger">*</span> </label>
                         <div class="text-danger">{{form_errors(postForm.description)}}</div>
                         {{form_widget(postForm.description, {'attr': {'class':'form-control'}})}}
                     </div>
@@ -64,12 +64,12 @@
                         {{form_widget(postForm.keywords, {'attr': {'class':'form-control'}})}}
                     </div>
                     <div class="mb-3">
-                        <label for="post_form_imageFile">Image</label> {#là on utilise imageFile au lieu de image car on a utilisé vich uploader bundle#}
+                        <label for="post_form_imageFile">Photographie du tableau</label> {#là on utilise imageFile au lieu de image car on a utilisé vich uploader bundle#}
                         <div class="text-danger">{{form_errors(postForm.imageFile)}}</div>
                         {{form_widget(postForm.imageFile, {'attr': {'class':'form-control'}})}}
                     </div>
                     <div class="mb-3">
-                        <label for="post_form_content">Contenu <span class="text-danger">*</span></label>
+                        <label for="post_form_content">Ressenti et histoire de l’œuvre <span class="text-danger">*</span></label>
                         <div class="text-danger">{{form_errors(postForm.content)}}</div>
                         {{form_widget(postForm.content, {'attr': {'class':'form-control', 'rows': 15}})}}
                     </div>
