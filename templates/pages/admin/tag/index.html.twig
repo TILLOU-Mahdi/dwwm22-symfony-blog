@@ -1,8 +1,8 @@
 {% extends "themes/base_admin.html.twig" %}
 
-{% block title %}Liste des tags{% endblock %}
+{% block title %}Liste des artistes et thèmes{% endblock %}
 
-{% block description %}Consultez la liste des tags{% endblock %}
+{% block description %}Consultez la liste des artistes, thèmes et émotions{% endblock %}
 
 {% block keywords %}
     <meta name="keywords" content="Consultation, lecture, liste, tags">
@@ -27,12 +27,12 @@
 {% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Liste des tags</h1>
+    <h1 class="text-center my-3 display-5">Liste des artistes, thèmes et émotions</h1>
 
     {% include 'components/alert.html.twig' %}
 
     <div class="d-flex justify-content-end align-items-center my-3">
-        <a href="{{path('app_admin_tag_create')}}" class="btn btn-primary shadow"><i class="fa-solid fa-plus"></i> Nouveau tag</a>
+        <a href="{{path('app_admin_tag_create')}}" class="btn btn-primary shadow"><i class="fa-solid fa-plus"></i> Nouveau thème</a>
     </div>
 
     <div class="table-responsive">

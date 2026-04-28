@@ -3,14 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inscription | Médecine du Monde - Blog santé du Dr Jean Dupont</title>
+        <title>Inscription | Rejoignez Regards d’Art</title>
 
         {# Seo #}
         <meta name="robots" content="index, follow">
-        <meta name="description" content="Inscrivez-vous au blog Médecine du Monde pour accéder à des contenus santé fiables, suivre les nouveaux articles médicaux et participer aux échanges autour de la prévention et du bien-être.">
-        <meta name="keywords" content="inscription blog santé, compte utilisateur santé, blog médical inscription, médecine du monde inscription">
-        <meta name="author" content="Dwwm22">
-        <meta name="publisher" content="Dwwm22">
+        <meta name="description" content="Inscrivez-vous à Regards d’Art pour suivre les publications de Paul Martin, découvrir ses ressentis autour de tableaux et participer aux échanges autour de l’art.">
+        <meta name="keywords" content="inscription blog art, compte utilisateur art, peinture, tableaux, Regards d’Art, Paul Martin">
+        <meta name="author" content="Paul Martin">
+        <meta name="publisher" content="Regards d'Art">
 
         {# Webpack Encore #}
         {% block stylesheets %}
@@ -33,12 +33,12 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">        
     </head>
-    <body class="jd-auth-bg">
+    <body class="art-auth-bg">
         <main>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <img class="img-fluid" src="/images/static/doctor-inscription.png" alt="Docteur Jean Dupont vous invite à vous inscrire">
+                        <img class="img-fluid" src="/images/static/art-inscription.png" alt="Paul Martin vous invite à rejoindre Regards d’Art">
                     </div>
                     <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
                         <h1 class="text-center my-3">Inscription</h1>
@@ -106,7 +106,7 @@
                                                         <p>
                                                         Les présentes Conditions Générales d'Utilisation (dites « CGU ») ont pour objet
                                                         de définir les modalités et conditions dans lesquelles les utilisateurs accèdent
-                                                        et utilisent le site <strong>Le blog de Jean Dupont</strong> (ci-après « le Site »).
+                                                        et utilisent le site <strong>Regards d'Art par Paul Martin</strong> (ci-après « le Site »).
                                                         </p>
                                                         <p>
                                                         Toute navigation sur le Site implique l'acceptation pleine et entière des présentes CGU.
@@ -116,12 +116,13 @@
                                                     <section>
                                                         <h2>1. Présentation du Site</h2>
                                                         <p>
-                                                        Le Site est un blog médical ayant pour objectif de diffuser des informations claires,
-                                                        accessibles et pédagogiques sur la santé, la médecine et le bien-être.
+                                                        Le Site est un blog artistique ayant pour objectif de partager des photographies de tableaux,
+                                                        des ressentis personnels et des éléments d'histoire autour d'œuvres d'art.
                                                         </p>
                                                         <p>
-                                                        Il met en avant l'expertise du <strong>Dr Jean Dupont</strong> et s'adresse à un public non spécialisé.
-                                                        Les informations publiées ont une vocation <strong>informative et éducative</strong> uniquement.
+                                                        Il met en avant la passion de <strong>Paul Martin</strong>, retraité amateur d'art,
+                                                        et s'adresse à toute personne curieuse de découvrir ou redécouvrir des œuvres picturales.
+                                                        Les contenus publiés ont une vocation <strong>culturelle et informative</strong>.
                                                         </p>
                                                     </section>
 
@@ -159,7 +160,7 @@
                                                         <ul>
                                                             <li>Contraires à la loi ou à l'ordre public</li>
                                                             <li>Diffamatoires, injurieux, haineux ou discriminatoires</li>
-                                                            <li>À caractère médical trompeur ou dangereux</li>
+                                                            <li>Portant atteinte aux droits d’auteur ou diffusant de fausses informations</li>
                                                             <li>Publicitaires ou promotionnels non sollicités</li>
                                                         </ul>
                                                         <p>
@@ -177,15 +178,12 @@
                                                     </section>
 
                                                     <section>
-                                                        <h2>5. Responsabilité médicale et limites d'information</h2>
-                                                        <p>Les contenus publiés sur le Site ne constituent en aucun cas :</p>
-                                                        <ul>
-                                                        <li>Un diagnostic médical</li>
-                                                        <li>Une consultation médicale</li>
-                                                        <li>Un avis médical personnalisé</li>
-                                                        </ul>
+                                                        <h2>5. Limites des contenus publiés</h2>
                                                         <p>
-                                                        Les informations diffusées ne remplacent pas une consultation auprès d'un professionnel de santé qualifié.
+                                                            Les contenus publiés sur le Site correspondent aux recherches, ressentis et interprétations personnelles de Paul Martin.
+                                                        </p>
+                                                        <p>
+                                                            Ils ne prétendent pas remplacer une expertise universitaire, muséale ou professionnelle en histoire de l'art.
                                                         </p>
                                                     </section>
 
@@ -259,7 +257,7 @@
                                                     </section>
 
                                                     <footer>
-                                                        <p>© Blog de Jean Dupont - Tous droits réservés</p>
+                                                        <p>© Regards d’Art - Paul Martin - Tous droits réservés</p>
                                                     </footer>
                                                 </div>
                                             </div>
@@ -276,7 +274,7 @@
                         {{form_end(registrationForm)}}
 
                         <div class="d-flex flex-column justify-content-center align-items-center my-4">
-                            <p>Vous avez déjà un compte? <a href="{{path('app_login')}}">Connectez-vous</a></p>
+                            <p>Vous avez déjà un compte ? <a href="{{path('app_login')}}">Connectez-vous</a></p>
                             <p><a href="{{path('app_visitor_welcome')}}">Retour à l'accueil</a></p>
                         </div>
                     </div>

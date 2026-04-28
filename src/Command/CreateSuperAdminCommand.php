@@ -98,8 +98,8 @@ class CreateSuperAdminCommand extends Command
 
         $superAdmin = new User();
 
-        $superAdmin->setFirstName('Jean');
-        $superAdmin->setLastName('Dupont');
+        $superAdmin->setFirstName('Paul');
+        $superAdmin->setLastName('Martin');
         $superAdmin->setEmail($email);
         $superAdmin->setRoles(['ROLE_SUPER_ADMIN', 'ROLE_ADMIN', 'ROLE_USER']);
         $superAdmin->setIsVerified(true);

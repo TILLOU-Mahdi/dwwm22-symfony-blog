@@ -1,22 +1,22 @@
 {% extends "themes/base_admin.html.twig" %}
 
-{% block title %}Nouvelle catégorie{% endblock %}
+{% block title %}Nouveau courant artistique{% endblock %}
 
-{% block description %}Ajouter une nouvelle catégorie à la liste{% endblock %}
+{% block description %}Ajouter un nouveau courant artistique{% endblock %}
 
 {% block keywords %}
     <meta name="keywords" content="ajouter, nouvelles, catégorie">
 {% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Nouvelle catégorie</h1>
+    <h1 class="text-center my-3 display-5">Nouveau courant artistique</h1>
 
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6 mx-auto">
                 {{ form_start(categoryForm) }}
                     <div class="mb-3">
-                        <label for="category_form_name">Nom: </label>
+                        <label for="category_form_name">Nom du courant artistique: </label>
                         <div class="text-danger">{{form_errors(categoryForm.name)}}</div>
                         {{form_widget(categoryForm.name, {'attr': {'class':'form-control', 'autofocus':'autofocus'}})}}
                     </div>
