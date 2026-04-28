@@ -1,0 +1,21 @@
+{% extends "themes/base_visitor.html.twig" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block description %}{{ post.description }}{% endblock %}
+
+{% block keywords %}{{ post.keywords }}{% endblock %}
+
+{% block main %}
+    <article class="container my-5">
+        <h1 class="text-center mb-4">{{ post.title }}</h1>
+
+        {% if post.image %}
+            <img src="{{ asset('images/uploads/' ~ post.image) }}" class="img-fluid mb-4" alt="{{ post.title }}">
+        {% endif %}
+
+        <div>
+            {{ post.content|raw }}
+        </div>
+    </article>
+{% endblock %}
