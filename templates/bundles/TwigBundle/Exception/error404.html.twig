@@ -1,0 +1,14 @@
+{% extends "themes/base_visitor.html.twig" %}
+
+{% block title %}Page introuvable{% endblock %}
+
+{% block main %}
+    <div class="container text-center my-5">
+        <h1>404 - Page introuvable</h1>
+        <p>La page que vous cherchez n’existe pas.</p>
+
+        <a href="{{ path('app_visitor_welcome') }}" class="btn btn-primary mt-3">
+            Retour à l’accueil
+        </a>
+    </div>
+{% endblock %}

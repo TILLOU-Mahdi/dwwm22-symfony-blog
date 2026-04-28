@@ -8,4 +8,53 @@
 
 {% block main %}
     <h1 class="text-center my-3 display-5">Les œuvres commentées</h1>
+
+    <div class="container my-5">
+
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-4 mb-4">
+                    <article class="card h-100">
+                        {% if post.image %}
+                            <img src="{{ asset('images/uploads/' ~ post.image) }}" class="card-img-top" alt="{{ post.title }}">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h2 class="h5 card-title">{{ post.title }}</h2>
+
+                            <p class="card-text">
+                                {{ post.content|striptags|replace({
+                                    '&eacute;':'é',
+                                    '&egrave;':'è',
+                                    '&ecirc;':'ê',
+                                    '&agrave;':'à',
+                                    '&ccedil;':'ç',
+                                    '&Ccedil;':'Ç',
+                                    '&rsquo;':'’',
+                                    '&lsquo;':'‘',
+                                    '&ldquo;':'“',
+                                    '&rdquo;':'”',
+                                    '&quot;':'"',
+                                    '&amp;':'&',
+                                    '**':''
+                                })|slice(0,150) }}...
+                            </p>
+
+                            <a href="{{ path('app_visitor_blog_show', {'slug': post.slug}) }}" class="btn btn-primary">
+                                Lire la suite
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            {% else %}
+                <p class="text-center">Aucune œuvre commentée pour le moment.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center mt-4">
+            {{ knp_pagination_render(posts) }}
+        </div>
+
+    </div>
 {% endblock %}
