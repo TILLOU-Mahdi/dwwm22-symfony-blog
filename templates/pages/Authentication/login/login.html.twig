@@ -33,17 +33,13 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">        
     </head>
-    <body class="art-auth-bg">
+    <body class="auth-page auth-login-bg">
         <main>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <img class="img-fluid" src="/images/static/art-connexion.png" alt="Paul Martin vous invite à rejoindre Regards d’Art">
-                    </div>
-                    <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
+            <div class="auth-container">
+                    <div class="auth-card">
                         <h1 class="text-center my-3">Connexion</h1>
 
-                        <form method="post" class="w-75">
+                        <form method="post" class="w-100">
                             {% if error %}
                                 <div class="alert alert-danger text-center text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                             {% endif %}
@@ -72,7 +68,7 @@
                                     </label>
                                 </div>
                                 <div class="col-md-6 text-md-end my-1">
-                                    <a href="{{path('app_forgot_password_request')}}">Mot de passe oublié?</a>
+                                    <a href="{{path('app_forgot_password_request')}}">Mot de passe oublié ?</a>
                                 </div>
                             </div>
 
@@ -80,11 +76,10 @@
                         </form>
 
                         <div class="d-flex flex-column justify-content-center align-items-center my-4">
-                            <p>Vous n'êtes pas encore inscrit? <a href="{{path('app_register')}}">Inscrivez-vous</a></p>
+                            <p>Vous n'êtes pas encore inscrit ? <a href="{{path('app_register')}}">Inscrivez-vous</a></p>
                             <p><a href="{{path('app_visitor_welcome')}}">Retour à l'accueil</a></p>
                         </div>
                     </div>
-                </div>
             </div>
         </main>
     </body>
