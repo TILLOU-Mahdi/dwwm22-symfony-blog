@@ -3,6 +3,7 @@
 namespace App\Controller\Visitor\Blog;
 
 use App\Entity\Comment;
+use App\Entity\User;
 use App\Form\CommentType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -39,7 +40,7 @@ final class BlogController extends AbstractController
         string $slug,
         PostRepository $postRepository,
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
     ): Response {
         $post = $postRepository->findOneBy([
             'slug' => $slug,
@@ -56,12 +57,14 @@ final class BlogController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!$this->getUser()) {
+            $user = $this->getUser();
+
+            if (!$user instanceof User) {
                 return $this->redirectToRoute('app_login');
             }
 
             $comment->setPost($post);
-            $comment->setUser($this->getUser());
+            $comment->setUser($user);
             $comment->setCreatedAt(new \DateTimeImmutable());
             $comment->setIsApproved(true);
 
