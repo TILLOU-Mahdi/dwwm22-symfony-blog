@@ -1,0 +1,17 @@
+{% extends "themes/base_visitor.html.twig" %}
+
+{% block title %}Modifier mon commentaire{% endblock %}
+
+{% block main %}
+    <div class="container my-5">
+        <h1>Modifier mon commentaire</h1>
+
+        {{ form_start(commentForm) }}
+            {{ form_row(commentForm.content) }}
+
+            <button type="submit" class="btn btn-primary">
+                Enregistrer
+            </button>
+        {{ form_end(commentForm) }}
+    </div>
+{% endblock %}
