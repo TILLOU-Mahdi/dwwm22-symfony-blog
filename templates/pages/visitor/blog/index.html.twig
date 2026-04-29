@@ -11,6 +11,34 @@
 
     <div class="container my-5">
 
+        <div class="mb-4">
+            <h2 class="h5">Filtrer par thème</h2>
+
+            <a href="{{ path('app_visitor_blog_index', {'tag': currentTag}) }}" class="btn btn-sm {% if not currentCategory %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                Tous
+            </a>
+
+            {% for category in categories %}
+                <a href="{{ path('app_visitor_blog_index', {'category': category.slug, 'tag': currentTag}) }}" class="btn btn-sm {% if currentCategory == category.slug %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                    {{ category.name }}
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="mb-4">
+            <h2 class="h5">Filtrer par artiste / tag</h2>
+
+            <a href="{{ path('app_visitor_blog_index', {'category': currentCategory}) }}" class="btn btn-sm {% if not currentTag %}btn-secondary{% else %}btn-outline-secondary{% endif %}">
+                Tous
+            </a>
+
+            {% for tag in tags %}
+                <a href="{{ path('app_visitor_blog_index', {'category': currentCategory, 'tag': tag.slug}) }}" class="btn btn-sm {% if currentTag == tag.slug %}btn-secondary{% else %}btn-outline-secondary{% endif %}">
+                    {{ tag.name }}
+                </a>
+            {% endfor %}
+        </div>
+
         <div class="row">
             {% for post in posts %}
                 <div class="col-md-4 mb-4">
@@ -51,7 +79,6 @@
             {% endfor %}
         </div>
 
-        <!-- Pagination -->
         <div class="d-flex justify-content-center mt-4">
             {{ knp_pagination_render(posts) }}
         </div>

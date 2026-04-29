@@ -5,7 +5,9 @@ namespace App\Controller\Visitor\Blog;
 use App\Entity\Comment;
 use App\Entity\User;
 use App\Form\CommentType;
+use App\Repository\CategoryRepository;
 use App\Repository\PostRepository;
+use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,22 +18,47 @@ use Symfony\Component\Routing\Attribute\Route;
 final class BlogController extends AbstractController
 {
     #[Route('/liste-des-articles', name: 'app_visitor_blog_index', methods: ['GET'])]
-    public function index(PostRepository $postRepository, PaginatorInterface $paginator, Request $request): Response
-    {
-        $query = $postRepository->createQueryBuilder('p')
+    public function index(
+        PostRepository $postRepository,
+        CategoryRepository $categoryRepository,
+        TagRepository $tagRepository,
+        PaginatorInterface $paginator,
+        Request $request,
+    ): Response {
+        $categorySlug = $request->query->get('category');
+        $tagSlug = $request->query->get('tag');
+
+        $queryBuilder = $postRepository->createQueryBuilder('p')
+            ->leftJoin('p.category', 'c')
+            ->leftJoin('p.tags', 't')
             ->where('p.isPublished = :published')
             ->setParameter('published', true)
-            ->orderBy('p.publishedAt', 'DESC')
-            ->getQuery();
+            ->orderBy('p.publishedAt', 'DESC');
+
+        if ($categorySlug) {
+            $queryBuilder
+                ->andWhere('c.slug = :categorySlug')
+                ->setParameter('categorySlug', $categorySlug);
+        }
+
+        if ($tagSlug) {
+            $queryBuilder
+                ->andWhere('t.slug = :tagSlug')
+                ->setParameter('tagSlug', $tagSlug);
+        }
 
         $posts = $paginator->paginate(
-            $query,
+            $queryBuilder->getQuery(),
             $request->query->getInt('page', 1),
             6
         );
 
         return $this->render('pages/visitor/blog/index.html.twig', [
             'posts' => $posts,
+            'categories' => $categoryRepository->findBy([], ['name' => 'ASC']),
+            'tags' => $tagRepository->findBy([], ['name' => 'ASC']),
+            'currentCategory' => $categorySlug,
+            'currentTag' => $tagSlug,
         ]);
     }
 
