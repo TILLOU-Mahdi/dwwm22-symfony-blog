@@ -17,6 +17,21 @@
         <div>
             {{ post.content|raw }}
         </div>
+        <div class="mt-4">
+            {% if app.user %}
+                <a href="{{ path('app_post_like', {'id': post.id}) }}" class="btn btn-outline-primary">
+                    👍 J’aime
+                </a>
+            {% else %}
+                <a href="{{ path('app_login') }}" class="btn btn-outline-primary">
+                    Connectez-vous pour liker
+                </a>
+            {% endif %}
+
+            <span class="ms-2">
+                {{ post.likes|length }} like(s)
+            </span>
+    </div>
     </article>
 
     <hr class="my-5">
