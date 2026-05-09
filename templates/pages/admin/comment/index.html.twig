@@ -1,0 +1,82 @@
+{% extends "themes/base_admin.html.twig" %}
+
+{% block title %}Commentaires{% endblock %}
+
+{% block description %}Gestion des commentaires{% endblock %}
+
+{% block main %}
+
+<div class="container my-5">
+
+    <h1 class="mb-4 display-5">
+        Gestion des commentaires
+    </h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-hover align-middle">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>Auteur</th>
+                    <th>Article</th>
+                    <th>Commentaire</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for comment in comments %}
+
+                    <tr>
+
+                        <td>
+                            {{ comment.user.firstName }} {{ comment.user.lastName }}
+                        </td>
+
+                        <td>
+                            {{ comment.post.title }}
+                        </td>
+
+                        <td>
+                            {{ comment.content|slice(0, 100) }}...
+                        </td>
+
+                        <td>
+                            {{ comment.createdAt|date('d/m/Y H:i') }}
+                        </td>
+
+                        <td>
+
+                            <form method="post"
+                                  action="{{ path('app_admin_comment_delete', {'id': comment.id}) }}">
+
+                                <button class="btn btn-danger btn-sm">
+                                    Supprimer
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

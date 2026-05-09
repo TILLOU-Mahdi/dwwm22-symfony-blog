@@ -1,0 +1,102 @@
+{% extends "themes/base_admin.html.twig" %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block description %}Gestion des utilisateurs{% endblock %}
+
+{% block main %}
+
+<div class="container my-5">
+
+    <h1 class="mb-4 display-5">
+        Gestion des utilisateurs
+    </h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-hover align-middle">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Date d’inscription</th>
+                    <th>Commentaires</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for user in users %}
+
+                    <tr>
+
+                        <td>
+                            {{ user.firstName }} {{ user.lastName }}
+                        </td>
+
+                        <td>
+                            {{ user.email }}
+                        </td>
+
+                        <td>
+                            {{ user.createdAt|date('d/m/Y H:i') }}
+                        </td>
+
+                        <td>
+
+                            {% if user.canComment %}
+
+                                <span class="badge bg-success">
+                                    Autorisés
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-danger">
+                                    Désactivés
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <form method="post"
+                                  action="{{ path('app_admin_user_toggle_comment', {'id': user.id}) }}">
+
+                                <button class="btn btn-sm {% if user.canComment %}btn-danger{% else %}btn-success{% endif %}">
+
+                                    {% if user.canComment %}
+                                        Désactiver
+                                    {% else %}
+                                        Réactiver
+                                    {% endif %}
+
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

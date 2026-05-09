@@ -1,0 +1,56 @@
+{% extends "themes/base_admin.html.twig" %}
+
+{% block title %}Détail du message{% endblock %}
+
+{% block main %}
+    <div class="container my-5">
+
+        <h1 class="mb-4">Détail du message</h1>
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+                <p>
+                    <strong>Nom :</strong>
+                    {{ message.name }}
+                </p>
+
+                <p>
+                    <strong>Email :</strong>
+                    {{ message.email }}
+                </p>
+
+                <p>
+                    <strong>Sujet :</strong>
+                    {{ message.subject }}
+                </p>
+
+                <p>
+                    <strong>Date :</strong>
+                    {{ message.createdAt|date('d/m/Y H:i') }}
+                </p>
+
+                <hr>
+
+                <p>
+                    <strong>Message :</strong>
+                </p>
+
+                <p>
+                    {{ message.message|nl2br }}
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="mt-4">
+            <a href="{{ path('app_admin_contact_message_index') }}"
+               class="btn btn-secondary">
+                Retour
+            </a>
+        </div>
+
+    </div>
+{% endblock %}

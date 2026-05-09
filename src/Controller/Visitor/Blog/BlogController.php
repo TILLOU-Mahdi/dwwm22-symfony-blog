@@ -90,6 +90,14 @@ final class BlogController extends AbstractController
                 return $this->redirectToRoute('app_login');
             }
 
+            if (!$user->isCanComment()) {
+                $this->addFlash('danger', 'Vous n’êtes plus autorisé à publier des commentaires.');
+
+                return $this->redirectToRoute('app_visitor_blog_show', [
+                    'slug' => $post->getSlug(),
+                ]);
+            }
+
             $comment->setPost($post);
             $comment->setUser($user);
             $comment->setCreatedAt(new \DateTimeImmutable());
