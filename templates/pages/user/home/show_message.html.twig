@@ -1,0 +1,69 @@
+{% extends "themes/base_user.html.twig" %}
+
+{% block title %}Mon message{% endblock %}
+
+{% block main %}
+
+<div class="container my-5">
+
+    <h1 class="mb-4">
+        Mon message
+    </h1>
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <p>
+                <strong>Sujet :</strong>
+                {{ message.subject }}
+            </p>
+
+            <p>
+                <strong>Date :</strong>
+                {{ message.createdAt|date('d/m/Y H:i') }}
+            </p>
+
+            <p>
+                <strong>Statut :</strong>
+
+                {% if message.isRead %}
+
+                    <span class="badge bg-success">
+                        Lu
+                    </span>
+
+                {% else %}
+
+                    <span class="badge bg-danger">
+                        Non lu
+                    </span>
+
+                {% endif %}
+
+            </p>
+
+            <hr>
+
+            <p>
+                <strong>Message :</strong>
+            </p>
+
+            <p>
+                {{ message.message|nl2br }}
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+        <a href="{{ path('app_user_home') }}"
+           class="btn btn-secondary">
+            Retour
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

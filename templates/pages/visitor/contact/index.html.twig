@@ -27,25 +27,33 @@
                 <div class="mb-3">
                     {{ form_label(contactForm.name) }}
                     {{ form_widget(contactForm.name, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_errors(contactForm.name) }}
+                    <div class="text-danger">
+                        {{ form_errors(contactForm.name) }}
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     {{ form_label(contactForm.email) }}
                     {{ form_widget(contactForm.email, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_errors(contactForm.email) }}
+                    <div class="text-danger">
+                        {{ form_errors(contactForm.email) }}
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     {{ form_label(contactForm.subject) }}
                     {{ form_widget(contactForm.subject, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_errors(contactForm.subject) }}
+                    <div class="text-danger">
+                        {{ form_errors(contactForm.subject) }}
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     {{ form_label(contactForm.message) }}
                     {{ form_widget(contactForm.message, {'attr': {'class': 'form-control', 'rows': 6}}) }}
-                    {{ form_errors(contactForm.message) }}
+                    <div class="text-danger">
+                        {{ form_errors(contactForm.message) }}
+                    </div>
                 </div>
 
                 <button formnovalidate type="submit" class="btn btn-primary shadow w-100">

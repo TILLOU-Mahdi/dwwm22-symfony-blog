@@ -2,8 +2,218 @@
 
 {% block title %}Espace utilisateur{% endblock %}
 
-{% block description %} Tableau de bord{% endblock %}
+{% block description %}Tableau de bord utilisateur{% endblock %}
 
 {% block main %}
- <h1 class="text-center my-3 display-5">Hello {{app.user.firstName}} {{app.user.LastName}}</h1>
+
+<div class="container my-5">
+
+    <h1 class="text-center my-4 display-5">
+        Bonjour {{ app.user.firstName }} {{ app.user.lastName }}
+    </h1>
+
+    {% if not is_granted('ROLE_ADMIN') %}
+        {# Messages envoyés #}
+        <section class="mb-5">
+
+            <h2 class="mb-4">
+                Mes messages envoyés
+            </h2>
+
+            {% if contactMessages is not empty %}
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-hover align-middle">
+
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Sujet</th>
+                                <th>Date</th>
+                                <th>Statut</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for message in contactMessages %}
+
+                                <tr>
+
+                                    <td>
+                                        {{ message.subject }}
+                                    </td>
+
+                                    <td>
+                                        {{ message.createdAt|date('d/m/Y H:i') }}
+                                    </td>
+
+                                    <td>
+
+                                        {% if message.isRead %}
+
+                                            <span class="badge bg-success">
+                                                Lu
+                                            </span>
+
+                                        {% else %}
+
+                                            <span class="badge bg-danger">
+                                                Non lu
+                                            </span>
+
+                                        {% endif %}
+
+                                    </td>
+
+                                    <td>
+                                        <a href="{{ path('app_user_contact_message_show', {'id': message.id}) }}"
+                                        class="btn btn-primary btn-sm">
+                                            Voir
+                                        </a>
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            {% else %}
+
+                <div class="alert alert-info">
+                    Vous n’avez envoyé aucun message pour le moment.
+                </div>
+
+            {% endif %}
+
+        </section>
+    {% endif %}
+
+        {# Mes commentaires #}
+    <section class="mb-5">
+
+        <h2 class="mb-4">
+            Mes commentaires
+        </h2>
+
+        {% if comments is not empty %}
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Article</th>
+                            <th>Commentaire</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for comment in comments %}
+                            <tr>
+                                <td>
+                                    {{ comment.post.title }}
+                                </td>
+
+                                <td>
+                                    {{ comment.content|slice(0, 100) }}...
+                                </td>
+
+                                <td>
+                                    {{ comment.createdAt|date('d/m/Y H:i') }}
+                                </td>
+
+                                <td>
+                                    <a href="{{ path('app_visitor_blog_show', {'slug': comment.post.slug}) }}"
+                                    class="btn btn-primary btn-sm">
+                                        Voir l’article
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-info">
+                Vous n’avez publié aucun commentaire pour le moment.
+            </div>
+
+        {% endif %}
+
+    </section>
+
+        {# Articles likés #}
+    <section class="mb-5">
+
+        <h2 class="mb-4">
+            Articles likés
+        </h2>
+
+        {% if postLikes is not empty %}
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Article</th>
+                            <th>Date du like</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for like in postLikes %}
+
+                            <tr>
+
+                                <td>
+                                    {{ like.post.title }}
+                                </td>
+
+                                <td>
+                                    {{ like.createdAt|date('d/m/Y H:i') }}
+                                </td>
+
+                                <td>
+                                    <a href="{{ path('app_visitor_blog_show', {'slug': like.post.slug}) }}"
+                                    class="btn btn-primary btn-sm">
+                                        Voir l’article
+                                    </a>
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-info">
+                Vous n’avez liké aucun article pour le moment.
+            </div>
+
+        {% endif %}
+
+    </section>
+
+</div>
+
 {% endblock %}

@@ -15,3 +15,4 @@ parameters:
         - '#Property App\\Entity\\Tag::\$id \(int\|null\) is never assigned int so it can be removed from the property type#'
         - '#Property App\\Entity\\Comment::\$id \(int\|null\) is never assigned int so it can be removed from the property type#'
         - '#Property App\\Entity\\PostLike::\$id \(int\|null\) is never assigned int so it can be removed from the property type#'
+        - '#Property App\\Entity\\ContactMessage::\$id \(int\|null\) is never assigned int so it can be removed from the property type#'
