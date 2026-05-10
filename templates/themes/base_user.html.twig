@@ -1,81 +1,104 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}{% endblock %} · Espace privé · Regards d'Art de Paul Martin</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} · Espace privé · Regards d'Art de Paul Martin</title>
 
-        {# Seo #}
-        {# <meta name="robots" content="index, follow"> #}
-        <meta name="description" content="{% block description %}{% endblock %}">
-        <meta name="keywords" content="{% block keywords %}{% endblock %}">
-        <meta name="author" content="Paul Martin">
-        <meta name="publisher" content="Regards d'Art">
-        <meta name="theme-color" content="#712cf9">
-        
-        {# Webpack Encore #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    <meta name="author" content="Paul Martin">
+    <meta name="publisher" content="Regards d'Art">
+    <meta name="theme-color" content="#4a3323">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {# Favicon #}
-        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-        <link rel="shortcut icon" href="/favicon.ico">
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="manifest" href="/site.webmanifest">
-        
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
 
-        {# Google Font #}
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">        
-    </head>
-    <body class="body-visitor">
-        
-        {# Navbar #}
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{{path('app_visitor_welcome')}}">Regards d'Art</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="body-user {% block body_class %}{% endblock %}">
+
+    <nav class="navbar navbar-expand-lg user-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ path('app_visitor_welcome') }}">
+                Regards d'Art
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#userNavbar"
+                aria-controls="userNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="userNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a
+                            class="nav-link {{ app.request.attributes.get('_route') == 'app_user_home' ? 'active' : '' }}"
+                            href="{{ path('app_user_home') }}"
+                        >
+                            Tableau de bord
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link {{ app.request.attributes.get('_route') starts with 'app_user_profile' ? 'active' : '' }}"
+                            href="{{ path('app_user_profile') }}"
+                        >
+                            Mon profil
+                        </a>
+                    </li>
+
+                    {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{path('app_user_home')}}">Tableau de bord</a>
+                            <a class="nav-link" href="{{ path('app_admin_home') }}">
+                                Espace admin
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_user_profile') }}">Mon profil</a>
-                        </li>
-                        {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{path('app_admin_home')}}">Espace admin</a>
-                        </li>
-                        {% endif %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{path('app_visitor_welcome')}}">Retour au site</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{path('app_logout')}}">Déconnexion</a>
-                        </li>
-                    </ul>
-                </div>
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_visitor_welcome') }}">
+                            Retour au site
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}">
+                            Déconnexion
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        {# Main #}
-        <main>
-            {% block main %}{% endblock %}
-        </main>
+    <main class="user-main {% block main_class %}{% endblock %}">
+        {% block main %}{% endblock %}
+    </main>
 
-        {# Footer #}
-        <footer class="text-center">
-            <p>© 2026 Regards d'Art - Paul Martin</p>
-        </footer>
-    </body>
+    {% include "partials/_footer.html.twig" %}
+
+</body>
 </html>

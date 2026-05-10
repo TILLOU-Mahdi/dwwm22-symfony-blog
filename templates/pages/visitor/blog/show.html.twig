@@ -7,16 +7,44 @@
 {% block keywords %}{{ post.keywords }}{% endblock %}
 
 {% block main %}
-    <article class="container my-5">
+    <article class="container py-5 blog-show-page">
         <h1 class="text-center mb-4">{{ post.title }}</h1>
 
         {% if post.image %}
-            <img src="{{ asset('images/uploads/' ~ post.image) }}" class="img-fluid mb-4" alt="{{ post.title }}">
+            <div class="blog-show-image-wrapper">
+                <img
+                    src="{{ asset('images/uploads/' ~ post.image) }}"
+                    class="img-fluid blog-show-image"
+                    alt="{{ post.title }}"
+                    data-bs-toggle="modal"
+                    data-bs-target="#postImageModal"
+                >
+            </div>
+
+            <div class="modal fade" id="postImageModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content blog-image-modal-content">
+                        <button
+                            type="button"
+                            class="btn-close blog-image-modal-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Fermer"
+                        ></button>
+
+                        <img
+                            src="{{ asset('images/uploads/' ~ post.image) }}"
+                            class="img-fluid blog-image-modal-img"
+                            alt="{{ post.title }}"
+                        >
+                    </div>
+                </div>
+            </div>
         {% endif %}
 
-        <div>
+        <div class="blog-show-content mt-4">
             {{ post.content|raw }}
         </div>
+
         <div class="mt-4">
             {% if app.user %}
                 <a href="{{ path('app_post_like', {'id': post.id}) }}" class="btn btn-outline-primary">
@@ -31,12 +59,12 @@
             <span class="ms-2">
                 {{ post.likes|length }} like(s)
             </span>
-    </div>
+        </div>
     </article>
 
     <hr class="my-5">
 
-    <section class="container my-5">
+    <section class="container pb-5">
         <h2>Commentaires</h2>
 
         {% for comment in post.comments %}

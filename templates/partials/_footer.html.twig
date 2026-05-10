@@ -1,0 +1,55 @@
+<footer class="site-footer">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-lg-4">
+                <h2 class="site-footer-title">Regards d’Art</h2>
+                <p class="site-footer-text">
+                    Le regard sensible de Paul Martin sur la peinture,
+                    les œuvres et l’histoire de l’art.
+                </p>
+            </div>
+
+            <div class="col-6 col-lg-2">
+                <h3 class="site-footer-heading">Navigation</h3>
+                <ul class="site-footer-list">
+                    <li><a href="{{ path('app_visitor_welcome') }}">Accueil</a></li>
+                    <li><a href="#">Œuvres</a></li>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="{{ path('app_visitor_contact_index') }}">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="col-6 col-lg-2">
+                <h3 class="site-footer-heading">Espace</h3>
+                <ul class="site-footer-list">
+                    {% if app.user %}
+                        <li><a href="#">Mon espace</a></li>
+                        <li><a href="#">Mon profil</a></li>
+                        <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                        <li><a href="{{ path('app_register') }}">Inscription</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div class="col-lg-4">
+                <blockquote class="site-footer-quote">
+                    “L’art lave notre âme de la poussière du quotidien.”
+                    <span>— Pablo Picasso</span>
+                </blockquote>
+            </div>
+        </div>
+
+        <hr class="site-footer-separator">
+
+        <div class="site-footer-bottom">
+            <p>
+                © {{ "now"|date("Y") }} Regards d’Art — Projet DWWM réalisé avec Symfony.
+            </p>
+            <p>
+                Développé par Mahdi Tillou.
+            </p>
+        </div>
+    </div>
+</footer>
