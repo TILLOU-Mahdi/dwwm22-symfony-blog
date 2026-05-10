@@ -86,19 +86,19 @@
 
                     <li class="nav-item">
                         <a
-                            class="nav-link {{ app.request.attributes.get('_route') starts with 'app_visitor_about' ? 'active' : '' }}"
-                            href="{{ path('app_visitor_about_index') }}"
+                            class="nav-link {{ app.request.attributes.get('_route') starts with 'app_visitor_blog' ? 'active' : '' }}"
+                            href="{{ path('app_visitor_blog_index') }}"
                         >
-                            À propos de Paul
+                            Les œuvres
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a
-                            class="nav-link {{ app.request.attributes.get('_route') starts with 'app_visitor_blog' ? 'active' : '' }}"
-                            href="{{ path('app_visitor_blog_index') }}"
+                            class="nav-link {{ app.request.attributes.get('_route') starts with 'app_visitor_about' ? 'active' : '' }}"
+                            href="{{ path('app_visitor_about_index') }}"
                         >
-                            Les œuvres
+                            À propos de Paul
                         </a>
                     </li>
 

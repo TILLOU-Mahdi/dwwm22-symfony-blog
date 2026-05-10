@@ -2,21 +2,202 @@
 
 {% block title %}Accueil{% endblock %}
 
-{% block description %}Découvrez le carnet artistique de Paul Martin, passionné de peinture et d’histoire de l’art{% endblock %}
+{% block description %}
+Découvrez le carnet artistique de Paul Martin, passionné de peinture et d’histoire de l’art
+{% endblock %}
 
-{% block keywords %}Art, Tableaux, Peinture, Paul Martin, Histoire de l’art{% endblock %}
+{% block keywords %}
+Art, Tableaux, Peinture, Paul Martin, Histoire de l’art
+{% endblock %}
 
 {% block main %}
-    <section class="container py-5">
-        <h1 class="text-center my-3 display-5">
-            Bienvenue dans le carnet d’art de Paul Martin
-        </h1>
 
-        <p class="text-center lead">
-            Retraité et passionné de peinture, Paul Martin partage ici ses photographies de tableaux,
-            ses ressentis personnels et quelques éléments d’histoire autour des œuvres qui l’inspirent.
+{# =========================
+   HERO
+========================= #}
+
+<section class="home-hero">
+
+    <div class="home-hero-overlay"></div>
+
+    <div class="container position-relative z-1">
+
+        <div class="row justify-content-center">
+
+            <div class="col-xl-8 text-center">
+
+                <p class="home-hero-quote">
+                    “La peinture est une poésie silencieuse.”
+                </p>
+
+                <span class="home-hero-author">
+                    — Simonide de Céos
+                </span>
+
+                <h1 class="display-3 mt-5 mb-4">
+                    Regards d’Art
+                </h1>
+
+                <p class="lead mb-5">
+                    Le regard sensible de Paul Martin sur les tableaux,
+                    les artistes et les grands mouvements de l’histoire de l’art.
+                </p>
+
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+                    <a
+                        href="{{ path('app_visitor_blog_index') }}"
+                        class="btn btn-light home-hero-btn"
+                    >
+                        Découvrir les œuvres
+                    </a>
+
+                    <a
+                        href="{{ path('app_visitor_about_index') }}"
+                        class="btn btn-outline-light home-hero-btn-outline"
+                    >
+                        À propos de Paul
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{# =========================
+   DERNIERS ARTICLES
+========================= #}
+
+<section class="home-latest-posts py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="display-5">
+                Dernières œuvres commentées
+            </h2>
+
+            <p class="lead">
+                Les dernières analyses et découvertes artistiques de Paul Martin
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            {% for post in latestPosts %}
+
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                    <article class="card blog-card h-100">
+
+                        {% if post.image %}
+
+                            <a
+                                href="{{ path('app_visitor_blog_show', {
+                                    slug: post.slug
+                                }) }}"
+
+                                class="blog-card-image-link"
+                            >
+                                <img
+                                    src="{{ asset('images/uploads/' ~ post.image) }}"
+                                    class="card-img-top"
+                                    alt="{{ post.title }}"
+                                >
+                            </a>
+
+                        {% endif %}
+
+                        <div class="card-body d-flex flex-column">
+
+                            <h3 class="h5 card-title">
+
+                                <a
+                                    href="{{ path('app_visitor_blog_show', {
+                                        slug: post.slug
+                                    }) }}"
+
+                                    class="blog-card-title-link"
+                                >
+                                    {{ post.title }}
+                                </a>
+
+                            </h3>
+
+                            <p class="card-text blog-card-summary">
+
+                                {{ post.description|striptags|slice(0, 150) }}...
+
+                            </p>
+
+                            <a
+                                href="{{ path('app_visitor_blog_show', {
+                                    slug: post.slug
+                                }) }}"
+
+                                class="btn btn-primary mt-auto"
+                            >
+                                Lire l’analyse
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="text-center mt-4">
+
+            <a
+                href="{{ path('app_visitor_blog_index') }}"
+                class="btn btn-outline-dark px-4"
+            >
+                Voir toutes les œuvres
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{# =========================
+   CONTACT 
+========================= #}
+
+<section class="home-contact py-5">
+
+    <div class="container text-center">
+
+        <h2 class="display-6 mb-3">
+            Une œuvre vous intrigue ?
+        </h2>
+
+        <p class="lead mb-4">
+            Échangez avec Paul autour de l’art et de la peinture.
         </p>
-    </section>
 
+        <a
+            href="{{ path('app_visitor_contact_index') }}"
+            class="btn btn-primary px-5"
+        >
+            Contacter Paul
+        </a>
+
+    </div>
+
+</section>
 
 {% endblock %}
