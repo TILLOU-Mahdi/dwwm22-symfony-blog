@@ -2,86 +2,205 @@
 
 {% block title %}Galerie des œuvres{% endblock %}
 
-{% block description %}Découvrez les publications de Paul Martin autour de tableaux, d’artistes et de mouvements artistiques{% endblock %}
+{% block description %}
+    Découvrez les publications de Paul Martin autour de tableaux,
+    d’artistes et de mouvements artistiques
+{% endblock %}
 
-{% block keywords %}Tableaux, Art, Peinture, Publications, Paul Martin{% endblock %}
+{% block keywords %}
+    Tableaux, Art, Peinture, Publications, Paul Martin
+{% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Les œuvres commentées</h1>
 
-    <div class="container my-5">
+<section class="blog-gallery-page">
 
-        <div class="mb-4">
-            <h2 class="h5">Filtrer par thème</h2>
+    <div class="container py-5">
 
-            <a href="{{ path('app_visitor_blog_index', {'tag': currentTag}) }}" class="btn btn-sm {% if not currentCategory %}btn-primary{% else %}btn-outline-primary{% endif %}">
+        <h1 class="text-center mb-5 display-5">
+            Les œuvres commentées
+        </h1>
+
+
+
+        {# =========================
+                FILTRES
+        ========================== #}
+
+<div class="blog-filter-actions mb-4">
+
+    <button
+        class="blog-filter-toggle"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#categoryFilters"
+        aria-expanded="false"
+        aria-controls="categoryFilters"
+    >
+        Filtrer par thème
+    </button>
+
+    <button
+        class="blog-filter-toggle"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#tagFilters"
+        aria-expanded="false"
+        aria-controls="tagFilters"
+    >
+        Filtrer par artiste / tag
+    </button>
+
+</div>
+
+<div class="collapse mb-4" id="categoryFilters">
+    <div class="art-filter-box">
+
+        <div class="art-filter-list">
+
+            <a
+                href="{{ path('app_visitor_blog_index', {'tag': currentTag}) }}"
+                class="art-filter-btn {% if not currentCategory %}is-active{% endif %}"
+            >
                 Tous
             </a>
 
             {% for category in categories %}
-                <a href="{{ path('app_visitor_blog_index', {'category': category.slug, 'tag': currentTag}) }}" class="btn btn-sm {% if currentCategory == category.slug %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                <a
+                    href="{{ path('app_visitor_blog_index', {
+                        'category': category.slug,
+                        'tag': currentTag
+                    }) }}"
+                    class="art-filter-btn {% if currentCategory == category.slug %}is-active{% endif %}"
+                >
                     {{ category.name }}
                 </a>
             {% endfor %}
+
         </div>
 
-        <div class="mb-4">
-            <h2 class="h5">Filtrer par artiste / tag</h2>
+    </div>
+</div>
 
-            <a href="{{ path('app_visitor_blog_index', {'category': currentCategory}) }}" class="btn btn-sm {% if not currentTag %}btn-secondary{% else %}btn-outline-secondary{% endif %}">
+<div class="collapse mb-5" id="tagFilters">
+    <div class="art-filter-box">
+
+        <div class="art-filter-list">
+
+            <a
+                href="{{ path('app_visitor_blog_index', {
+                    'category': currentCategory
+                }) }}"
+                class="art-filter-btn {% if not currentTag %}is-active{% endif %}"
+            >
                 Tous
             </a>
 
             {% for tag in tags %}
-                <a href="{{ path('app_visitor_blog_index', {'category': currentCategory, 'tag': tag.slug}) }}" class="btn btn-sm {% if currentTag == tag.slug %}btn-secondary{% else %}btn-outline-secondary{% endif %}">
+                <a
+                    href="{{ path('app_visitor_blog_index', {
+                        'category': currentCategory,
+                        'tag': tag.slug
+                    }) }}"
+                    class="art-filter-btn {% if currentTag == tag.slug %}is-active{% endif %}"
+                >
                     {{ tag.name }}
                 </a>
             {% endfor %}
+
         </div>
+
+    </div>
+</div>
+
+        {# =========================
+           ARTICLES
+        ========================== #}
 
         <div class="row">
+
             {% for post in posts %}
+
                 <div class="col-md-4 mb-4">
-                    <article class="card h-100">
+
+                    <article class="card blog-card h-100">
+
                         {% if post.image %}
-                            <img src="{{ asset('images/uploads/' ~ post.image) }}" class="card-img-top" alt="{{ post.title }}">
+
+                            <a
+                                href="{{ path('app_visitor_blog_show', {
+                                    'slug': post.slug
+                                }) }}"
+
+                                class="blog-card-image-link"
+                            >
+                                <img
+                                    src="{{ asset('images/uploads/' ~ post.image) }}"
+                                    class="card-img-top"
+                                    alt="{{ post.title }}"
+                                >
+                            </a>
+
                         {% endif %}
 
-                        <div class="card-body">
-                            <h2 class="h5 card-title">{{ post.title }}</h2>
+                        <div class="card-body d-flex flex-column">
 
-                            <p class="card-text">
-                                {{ post.content|striptags|replace({
-                                    '&eacute;':'é',
-                                    '&egrave;':'è',
-                                    '&ecirc;':'ê',
-                                    '&agrave;':'à',
-                                    '&ccedil;':'ç',
-                                    '&Ccedil;':'Ç',
-                                    '&rsquo;':'’',
-                                    '&lsquo;':'‘',
-                                    '&ldquo;':'“',
-                                    '&rdquo;':'”',
-                                    '&quot;':'"',
-                                    '&amp;':'&',
-                                    '**':''
-                                })|slice(0,150) }}...
+                            <h2 class="h5 card-title">
+
+                                <a
+                                    href="{{ path('app_visitor_blog_show', {
+                                        'slug': post.slug
+                                    }) }}"
+
+                                    class="blog-card-title-link"
+                                >
+                                    {{ post.title }}
+                                </a>
+
+                            </h2>
+
+                            <p class="card-text blog-card-summary">
+
+                                {{ post.description|striptags|slice(0, 180) }}...
+
                             </p>
 
-                            <a href="{{ path('app_visitor_blog_show', {'slug': post.slug}) }}" class="btn btn-primary">
+                            <a
+                                href="{{ path('app_visitor_blog_show', {
+                                    'slug': post.slug
+                                }) }}"
+
+                                class="btn btn-primary mt-auto"
+                            >
                                 Lire la suite
                             </a>
+
                         </div>
+
                     </article>
+
                 </div>
+
             {% else %}
-                <p class="text-center">Aucune œuvre commentée pour le moment.</p>
+
+                <p class="text-center">
+                    Aucune œuvre commentée pour le moment.
+                </p>
+
             {% endfor %}
+
         </div>
+
+        {# =========================
+           PAGINATION
+        ========================== #}
 
         <div class="d-flex justify-content-center mt-4">
             {{ knp_pagination_render(posts) }}
         </div>
 
     </div>
+
+</section>
+
 {% endblock %}

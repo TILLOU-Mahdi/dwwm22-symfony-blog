@@ -4,75 +4,81 @@
 
 {% block description %}Modification du profil utilisateur{% endblock %}
 
+{% block body_class %}user-profile-body{% endblock %}
+
+{% block main_class %}user-profile-main{% endblock %}
+
 {% block main %}
-    <div class="container my-5">
+    <section class="user-profile-page">
+        <div class="container">
 
-        <h1 class="text-center my-4 display-5">
-            Mon profil
-        </h1>
+            <h1 class="text-center mb-4 display-5">
+                Mon profil
+            </h1>
 
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-9">
 
-                {% for message in app.flashes('success') %}
-                    <div class="alert alert-success text-center">
-                        {{ message }}
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success text-center">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                    <div class="card user-profile-card">
+                        <div class="card-body">
+
+                            <p class="user-profile-date">
+                                <strong>Date d’inscription :</strong>
+                                {{ user.createdAt|date('d/m/Y H:i') }}
+                            </p>
+
+                            <hr>
+
+                            {{ form_start(profileForm) }}
+
+                                <div class="mb-3">
+                                    {{ form_label(profileForm.firstName) }}
+                                    {{ form_widget(profileForm.firstName, {'attr': {'class': 'form-control'}}) }}
+                                    <div class="text-danger">
+                                        {{ form_errors(profileForm.firstName) }}
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    {{ form_label(profileForm.lastName) }}
+                                    {{ form_widget(profileForm.lastName, {'attr': {'class': 'form-control'}}) }}
+                                    <div class="text-danger">
+                                        {{ form_errors(profileForm.lastName) }}
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    {{ form_label(profileForm.email) }}
+                                    {{ form_widget(profileForm.email, {'attr': {'class': 'form-control'}}) }}
+                                    <div class="text-danger">
+                                        {{ form_errors(profileForm.email) }}
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary w-100">
+                                    Enregistrer les modifications
+                                </button>
+
+                            {{ form_end(profileForm) }}
+
+                        </div>
                     </div>
-                {% endfor %}
 
-                <div class="card shadow">
-                    <div class="card-body">
-
-                        <p>
-                            <strong>Date d’inscription :</strong>
-                            {{ user.createdAt|date('d/m/Y H:i') }}
-                        </p>
-
-                        <hr>
-
-                        {{ form_start(profileForm) }}
-
-                            <div class="mb-3">
-                                {{ form_label(profileForm.firstName) }}
-                                {{ form_widget(profileForm.firstName, {'attr': {'class': 'form-control'}}) }}
-                                <div class="text-danger">
-                                    {{ form_errors(profileForm.firstName) }}
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                {{ form_label(profileForm.lastName) }}
-                                {{ form_widget(profileForm.lastName, {'attr': {'class': 'form-control'}}) }}
-                                <div class="text-danger">
-                                    {{ form_errors(profileForm.lastName) }}
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                {{ form_label(profileForm.email) }}
-                                {{ form_widget(profileForm.email, {'attr': {'class': 'form-control'}}) }}
-                                <div class="text-danger">
-                                    {{ form_errors(profileForm.email) }}
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary w-100">
-                                Enregistrer les modifications
-                            </button>
-
-                        {{ form_end(profileForm) }}
-
+                    <div class="text-center mt-4">
+                        <a href="{{ path('app_user_home') }}" class="btn btn-secondary user-profile-back-btn">
+                            Retour au tableau de bord
+                        </a>
                     </div>
-                </div>
 
-                <div class="mt-4">
-                    <a href="{{ path('app_user_home') }}" class="btn btn-secondary">
-                        Retour au tableau de bord
-                    </a>
                 </div>
-
             </div>
-        </div>
 
-    </div>
+        </div>
+    </section>
 {% endblock %}
