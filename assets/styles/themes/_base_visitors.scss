@@ -1581,3 +1581,265 @@ html,
         width: 100%;
     }
 }
+
+/* =========================
+   ACCUEIL - HERO
+========================= */
+
+.home-hero {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    background-image:
+        linear-gradient(
+            rgba(20, 10, 4, 0.58),
+            rgba(20, 10, 4, 0.58)
+        ),
+        url('../../../public/images/static/home-hero.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: #f8efe2;
+}
+
+.home-hero h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #f8efe2;
+    text-shadow: 0 5px 25px rgba(0, 0, 0, 0.45);
+}
+
+.home-hero .lead {
+    color: #ead8c0;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.home-hero-quote {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 3rem;
+    line-height: 1.35;
+    color: #fff8ee;
+    text-shadow: 0 6px 25px rgba(0, 0, 0, 0.55);
+    margin-bottom: 1rem;
+}
+
+.home-hero-author {
+    display: block;
+    color: #d1a56f;
+    font-size: 1.1rem;
+    letter-spacing: 0.12rem;
+    text-transform: uppercase;
+}
+
+.home-hero-btn,
+.home-hero-btn-outline {
+    border-radius: 999px;
+    padding: 0.75rem 1.5rem;
+}
+
+/* Responsive accueil */
+
+@media (max-width: 768px) {
+    .home-hero {
+        min-height: 90vh;
+        background-attachment: scroll;
+        padding: 4rem 1rem;
+    }
+
+    .home-hero-quote {
+        font-size: 2.1rem;
+    }
+
+    .home-hero h1 {
+        font-size: 2.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .home-hero-quote {
+        font-size: 1.8rem;
+    }
+
+    .home-hero .lead {
+        font-size: 1rem;
+    }
+
+    .home-hero-btn,
+    .home-hero-btn-outline {
+        width: 100%;
+    }
+}
+
+/* =========================
+   PAGE À PROPOS DE PAUL
+========================= */
+
+.about-paul-page {
+    background: #fbf6ef;
+}
+
+.about-paul-image-wrapper {
+    position: relative;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.about-paul-image {
+    width: 100%;
+    height: auto;
+    border-radius: 28px;
+    box-shadow: 0 25px 60px rgba(45, 28, 19, 0.22);
+}
+
+.about-paul-label {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #7a3e2d;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.16rem;
+    text-transform: uppercase;
+}
+
+.about-paul-page h1 {
+    color: #3a2418;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.about-paul-page p {
+    color: #4a3323;
+    line-height: 1.8;
+}
+
+.about-paul-page .btn-primary {
+    background: #8b6b52;
+    border-color: #8b6b52;
+    border-radius: 999px;
+    padding: 0.65rem 1.4rem;
+}
+
+.about-paul-page .btn-primary:hover {
+    background: #6f523d;
+    border-color: #6f523d;
+}
+
+/* Responsive à propos */
+
+@media (max-width: 991px) {
+    .about-paul-page {
+        text-align: center;
+    }
+
+    .about-paul-image-wrapper {
+        max-width: 460px;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-paul-page .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .about-paul-page h1 {
+        font-size: 2rem;
+    }
+
+    .about-paul-image {
+        border-radius: 20px;
+    }
+
+    .about-paul-page .btn-primary {
+        width: 100%;
+    }
+}
+
+.blog-gallery-page h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #3a2418;
+    font-weight: 400;
+}
+
+/* =========================
+   PAGE ARTICLE
+========================= */
+
+.blog-show-full-bg {
+    background: #fbf6ef;
+}
+
+.blog-show-page {
+    background: #fbf6ef;
+}
+
+.blog-show-content {
+    color: #4a3323;
+    line-height: 1.65;
+}
+
+.blog-show-content p {
+    margin-bottom: 1rem;
+}
+
+.blog-show-content h2,
+.blog-show-content h3 {
+    color: #3a2418;
+    font-family: Georgia, "Times New Roman", serif;
+    margin-top: 1.7rem;
+    margin-bottom: 0.8rem;
+}
+
+.blog-comments-section {
+    background: #fbf6ef;
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+}
+
+/* =========================
+   COMMENTAIRES
+========================= */
+
+.blog-comments-section {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+}
+
+.blog-comments-section textarea.form-control {
+    min-height: 180px;
+    margin-bottom: 1.4rem;
+    background: #fffaf4;
+    border: 1px solid rgba(120, 82, 48, 0.22);
+    border-radius: 16px;
+}
+
+.blog-comments-section textarea.form-control:focus {
+    border-color: #b98955;
+    box-shadow: 0 0 0 0.18rem rgba(185, 137, 85, 0.22);
+}
+
+.blog-comments-section .btn-primary {
+    background: #b98955 !important;
+    border-color: #b98955 !important;
+    color: #fffaf4 !important;
+
+    border-radius: 999px;
+    padding: 0.7rem 1.6rem;
+
+    margin-top: 1rem;
+
+    transition: 0.2s ease;
+}
+
+.blog-comments-section .btn-primary:hover {
+    background: #9c7447 !important;
+    border-color: #9c7447 !important;
+
+    transform: translateY(-2px);
+}

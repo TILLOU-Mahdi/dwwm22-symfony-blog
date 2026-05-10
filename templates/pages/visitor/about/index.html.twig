@@ -7,15 +7,53 @@
 {% block keywords %}À propos, Paul Martin, Art, Peinture{% endblock %}
 
 {% block main %}
-    <section class="container py-5">
-        <h1 class="text-center my-3 display-5">
-            À propos de Paul Martin
-        </h1>
+<section class="about-paul-page">
+    <div class="container py-5">
 
-        <p class="text-center lead">
-            Paul Martin est un retraité passionné par les tableaux, les musées et l’histoire de l’art.
-            À travers ce carnet personnel, il partage les œuvres qui l’ont marqué, les émotions qu’elles lui inspirent
-            et quelques éléments historiques pour mieux les comprendre.
-        </p>
-    </section>
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+                <div class="about-paul-image-wrapper">
+                    <img
+                        src="{{ asset('images/static/paul-autoportrait.jpg') }}"
+                        alt="Paul Martin réalisant son autoportrait"
+                        class="about-paul-image"
+                    >
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <span class="about-paul-label">
+                    À propos
+                </span>
+
+                <h1 class="display-5 mb-4">
+                    Paul Martin, un regard sensible sur l’art
+                </h1>
+
+                <p class="lead">
+                    Paul Martin est un retraité passionné par les tableaux, les musées
+                    et l’histoire de l’art.
+                </p>
+
+                <p>
+                    À travers ce carnet personnel, il partage les œuvres qui l’ont marqué,
+                    les émotions qu’elles lui inspirent et quelques éléments historiques
+                    pour mieux les comprendre.
+                </p>
+
+                <p>
+                    Son approche n’est pas celle d’un expert froid, mais celle d’un homme
+                    curieux, sensible et attaché à la beauté des détails.
+                </p>
+
+                <a href="{{ path('app_visitor_blog_index') }}" class="btn btn-primary mt-3">
+                    Découvrir les œuvres
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
 {% endblock %}

@@ -6,7 +6,9 @@
 
 {% block keywords %}{{ post.keywords }}{% endblock %}
 
+
 {% block main %}
+  <div class="blog-show-full-bg">
     <article class="container py-5 blog-show-page">
         <h1 class="text-center mb-4">{{ post.title }}</h1>
 
@@ -64,7 +66,7 @@
 
     <hr class="my-5">
 
-    <section class="container pb-5">
+    <section class="container pb-5 blog-comments-section">
         <h2>Commentaires</h2>
 
         {% for comment in post.comments %}
@@ -119,4 +121,5 @@
             </p>
         {% endif %}
     </section>
+  </div>
 {% endblock %}
