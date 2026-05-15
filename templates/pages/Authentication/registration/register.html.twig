@@ -27,7 +27,7 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">        
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     </head>
 
     <body class="auth-page auth-register-bg">
@@ -150,14 +150,24 @@
                             <button
                                 type="button"
                                 class="btn btn-link p-0 align-baseline"
-                                onclick="document.getElementById('cguCard').classList.remove('d-none')"
+                                onclick="toggleCgu()"
                             >
                                 les conditions générales d'utilisation
                             </button>
                         </label>
 
-                        <div id="cguCard" class="card mt-3 d-none">
-                            <div class="card-header d-flex justify-content-between align-items-center">
+                        <div
+                            id="cgu-box"
+                            class="mt-3"
+                            style="
+                                display: none;
+                                border: 1px solid #dee2e6;
+                                border-radius: 12px;
+                                background: #fff;
+                                overflow: hidden;
+                            "
+                        >
+                            <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
                                 <h2 class="h5 mb-0">
                                     Les conditions générales d'utilisation
                                 </h2>
@@ -166,13 +176,13 @@
                                     type="button"
                                     class="btn-close"
                                     aria-label="Fermer"
-                                    onclick="document.getElementById('cguCard').classList.add('d-none')"
+                                    onclick="closeCgu()"
                                 ></button>
                             </div>
 
                             <div
-                                class="card-body"
-                                style="max-height: 320px; overflow-y: auto;"
+                                class="p-3"
+                                style="max-height: 340px; overflow-y: auto;"
                             >
                                 <div class="cgu-container">
                                     <header>
@@ -292,11 +302,11 @@
                                 </div>
                             </div>
 
-                            <div class="card-footer text-end">
+                            <div class="p-3 border-top text-end">
                                 <button
                                     type="button"
                                     class="btn btn-secondary btn-sm"
-                                    onclick="document.getElementById('cguCard').classList.add('d-none')"
+                                    onclick="closeCgu()"
                                 >
                                     Fermer
                                 </button>
@@ -331,5 +341,21 @@
                 </div>
             </div>
         </main>
+
+        <script>
+            function toggleCgu() {
+                const cguBox = document.getElementById('cgu-box');
+
+                if (cguBox.style.display === 'none' || cguBox.style.display === '') {
+                    cguBox.style.display = 'block';
+                } else {
+                    cguBox.style.display = 'none';
+                }
+            }
+
+            function closeCgu() {
+                document.getElementById('cgu-box').style.display = 'none';
+            }
+        </script>
     </body>
 </html>
