@@ -39,7 +39,11 @@
                     <tr>
 
                         <td>
-                            {{ comment.user.firstName }} {{ comment.user.lastName }}
+                            {% if comment.user %}
+                                {{ comment.user.firstName }} {{ comment.user.lastName }}
+                            {% else %}
+                                Utilisateur supprimé
+                            {% endif %}
                         </td>
 
                         <td>

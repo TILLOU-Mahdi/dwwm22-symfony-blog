@@ -110,6 +110,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: ContactMessage::class, mappedBy: 'user')]
     private Collection $contactMessages;
 
+    /**
+     * @var Collection<int, ResetPasswordRequest>
+     */
+    #[ORM\OneToMany(targetEntity: ResetPasswordRequest::class, mappedBy: 'user')]
+    private Collection $resetPasswordRequests;
+
     #[ORM\Column]
     private bool $canComment = true;
 
@@ -119,6 +125,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->comments = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->contactMessages = new ArrayCollection();
+        $this->resetPasswordRequests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -140,8 +147,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * A visual identifier that represents this user.
-     *
-     * @see UserInterface
      */
     public function getUserIdentifier(): string
     {
@@ -154,7 +159,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
+
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -185,12 +190,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * Ensure the session doesn't contain actual password hashes by CRC32C-hashing them, as supported since Symfony 7.3.
-     */
     public function __serialize(): array
     {
         $data = (array) $this;
+
         $data["\0".self::class."\0password"] = hash('crc32c', $this->password);
 
         return $data;
@@ -199,7 +202,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[\Deprecated]
     public function eraseCredentials(): void
     {
-        // @deprecated, to be removed when upgrading to Symfony 8
     }
 
     public function getFirstName(): ?string
@@ -295,7 +297,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removePost(Post $post): static
     {
         if ($this->posts->removeElement($post)) {
-            // set the owning side to null (unless already changed)
             if ($post->getUser() === $this) {
                 $post->setUser(null);
             }
@@ -325,7 +326,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeComment(Comment $comment): static
     {
         if ($this->comments->removeElement($comment)) {
-            // set the owning side to null (unless already changed)
             if ($comment->getUser() === $this) {
                 $comment->setUser(null);
             }
@@ -355,7 +355,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeLike(PostLike $like): static
     {
         if ($this->likes->removeElement($like)) {
-            // set the owning side to null (unless already changed)
             if ($like->getUser() === $this) {
                 $like->setUser(null);
             }
@@ -385,13 +384,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeContactMessage(ContactMessage $contactMessage): static
     {
         if ($this->contactMessages->removeElement($contactMessage)) {
-            // set the owning side to null (unless already changed)
             if ($contactMessage->getUser() === $this) {
                 $contactMessage->setUser(null);
             }
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, ResetPasswordRequest>
+     */
+    public function getResetPasswordRequests(): Collection
+    {
+        return $this->resetPasswordRequests;
     }
 
     public function isCanComment(): bool

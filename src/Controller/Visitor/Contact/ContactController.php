@@ -19,6 +19,11 @@ final class ContactController extends AbstractController
         $user = $this->getUser();
 
         if (!$user instanceof User) {
+            $this->addFlash(
+                'success',
+                'Connectez-vous pour accéder à la page de contact.'
+            );
+
             return $this->redirectToRoute('app_login');
         }
 

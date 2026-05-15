@@ -25,6 +25,12 @@
                         </div>
                     {% endfor %}
 
+                    {% for message in app.flashes('danger') %}
+                        <div class="alert alert-danger text-center">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
                     <div class="card user-profile-card mb-4">
                         <div class="card-body">
 
@@ -74,7 +80,7 @@
                         </div>
                     </div>
 
-                    <div class="card user-profile-card">
+                    <div class="card user-profile-card mb-4">
                         <div class="card-body">
 
                             <h2 class="h4 mb-3">
@@ -118,6 +124,52 @@
                                 </button>
 
                             {{ form_end(passwordForm) }}
+
+                        </div>
+                    </div>
+
+                    <div class="card user-profile-card mt-4 border-danger">
+                        <div class="card-body">
+
+                            <h2 class="h4 mb-3 text-danger">
+                                Supprimer mon compte
+                            </h2>
+
+                            <p>
+                                Cette action est définitive. Vos commentaires seront conservés,
+                                mais anonymisés sous le nom “Utilisateur supprimé”.
+                            </p>
+
+                            <form
+                                method="post"
+                                action="{{ path('app_user_profile_delete') }}"
+                                onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer définitivement votre compte ?');"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="_token"
+                                    value="{{ csrf_token('delete_profile_' ~ user.id) }}"
+                                >
+
+                                <div class="mb-3">
+                                    <label for="delete_account_password" class="form-label">
+                                        Confirmez votre mot de passe
+                                    </label>
+
+                                    <input
+                                        type="password"
+                                        name="delete_account_password"
+                                        id="delete_account_password"
+                                        class="form-control"
+                                        required
+                                        autocomplete="current-password"
+                                    >
+                                </div>
+
+                                <button type="submit" class="btn btn-danger w-100">
+                                    Supprimer définitivement mon compte
+                                </button>
+                            </form>
 
                         </div>
                     </div>
