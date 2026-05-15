@@ -131,7 +131,7 @@ final class ProfileController extends AbstractController
         }
 
         foreach ($user->getContactMessages() as $contactMessage) {
-            $contactMessage->setUser(null);
+            $entityManager->remove($contactMessage);
         }
 
         foreach ($user->getPosts() as $post) {
