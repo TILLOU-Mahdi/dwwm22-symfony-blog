@@ -18,6 +18,12 @@
         </div>
     {% endfor %}
 
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <div class="table-responsive">
 
         <table class="table table-bordered table-hover align-middle">
@@ -70,23 +76,55 @@
 
                         <td>
 
-                            <form method="post"
-                                  action="{{ path('app_admin_user_toggle_comment', {'id': user.id}) }}">
+                            <div class="d-flex gap-2 flex-wrap">
 
-                                <button class="btn btn-sm {% if user.canComment %}btn-danger{% else %}btn-success{% endif %}">
+                                <form
+                                    method="post"
+                                    action="{{ path('app_admin_user_toggle_comment', {'id': user.id}) }}"
+                                >
 
-                                    {% if user.canComment %}
-                                        Désactiver
-                                    {% else %}
-                                        Réactiver
-                                    {% endif %}
+                                    <button class="btn btn-sm {% if user.canComment %}btn-danger{% else %}btn-success{% endif %}">
 
-                                </button>
+                                        {% if user.canComment %}
+                                            Désactiver
+                                        {% else %}
+                                            Réactiver
+                                        {% endif %}
 
-                            </form>
+                                    </button>
+
+                                </form>
+
+                                <form
+                                    method="post"
+                                    action="{{ path('app_admin_user_delete', {'id': user.id}) }}"
+                                    onsubmit="return confirm('Supprimer définitivement ce compte ? Les commentaires seront anonymisés sous le nom “Utilisateur supprimé”.');"
+                                >
+
+                                    <input
+                                        type="hidden"
+                                        name="_token"
+                                        value="{{ csrf_token('delete_user_' ~ user.id) }}"
+                                    >
+
+                                    <button class="btn btn-sm btn-outline-danger">
+                                        Supprimer
+                                    </button>
+
+                                </form>
+
+                            </div>
 
                         </td>
 
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            Aucun utilisateur trouvé.
+                        </td>
                     </tr>
 
                 {% endfor %}

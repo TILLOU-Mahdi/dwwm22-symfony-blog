@@ -76,8 +76,11 @@
 
                     <small class="text-muted">
                         Publié le {{ comment.createdAt|date('d/m/Y à H:i') }}
+                        par
                         {% if comment.user %}
-                            par {{ comment.user.email }}
+                            {{ comment.user.email }}
+                        {% else %}
+                            Utilisateur supprimé
                         {% endif %}
                     </small>
 
