@@ -63,6 +63,10 @@ final class UserController extends AbstractController
             $post->setUser(null);
         }
 
+        foreach ($user->getResetPasswordRequests() as $resetPasswordRequest) {
+            $entityManager->remove($resetPasswordRequest);
+        }
+
         $entityManager->remove($user);
         $entityManager->flush();
 
