@@ -5,14 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inscription | Rejoignez Regards d’Art</title>
 
-        {# Seo #}
         <meta name="robots" content="index, follow">
         <meta name="description" content="Inscrivez-vous à Regards d’Art pour suivre les publications de Paul Martin, découvrir ses ressentis autour de tableaux et participer aux échanges autour de l’art.">
         <meta name="keywords" content="inscription blog art, compte utilisateur art, peinture, tableaux, Regards d’Art, Paul Martin">
         <meta name="author" content="Paul Martin">
         <meta name="publisher" content="Regards d'Art">
 
-        {# Webpack Encore #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -21,25 +19,20 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
 
-        {# Favicon #}
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
         <link rel="icon" type="image/svg+xml" href="/favicon.svg">
         <link rel="shortcut icon" href="/favicon.ico">
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
         <link rel="manifest" href="/site.webmanifest">
 
-        {# Google Font #}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">        
     </head>
 
     <body class="auth-page auth-register-bg">
-
         <main class="auth-container">
-
             <div class="auth-card">
-
                 <h1 class="text-center mb-4">Inscription</h1>
 
                 {% for flash_error in app.flashes('verify_email_error') %}
@@ -51,9 +44,7 @@
                 {{ form_start(registrationForm, {'attr': {'class':'w-100'}}) }}
 
                     <div class="row">
-
                         <div class="col-lg-6">
-
                             <div class="mb-3">
                                 <label for="registration_form_firstName">
                                     Prénom <span class="text-danger">*</span>
@@ -70,11 +61,9 @@
                                     }
                                 }) }}
                             </div>
-
                         </div>
 
                         <div class="col-lg-6">
-
                             <div class="mb-3">
                                 <label for="registration_form_lastName">
                                     Nom <span class="text-danger">*</span>
@@ -90,13 +79,10 @@
                                     }
                                 }) }}
                             </div>
-
                         </div>
-
                     </div>
 
                     <div class="mb-3">
-
                         <label for="registration_form_email">
                             Email <span class="text-danger">*</span>
                         </label>
@@ -110,11 +96,9 @@
                                 'class':'form-control'
                             }
                         }) }}
-
                     </div>
 
                     <div class="mb-3">
-
                         <label for="registration_form_password_first">
                             Mot de passe <span class="text-danger">*</span>
                         </label>
@@ -134,11 +118,9 @@
                             Au moins une lettre minuscule, majuscule,
                             un chiffre et un caractère spécial.
                         </small>
-
                     </div>
 
                     <div class="mb-3">
-
                         <label for="registration_form_password_second">
                             Confirmation du mot de passe
                             <span class="text-danger">*</span>
@@ -153,11 +135,9 @@
                                 'class':'form-control'
                             }
                         }) }}
-
                     </div>
 
                     <div class="mb-3">
-
                         <div class="text-danger">
                             {{ form_errors(registrationForm.agreeTerms) }}
                         </div>
@@ -167,202 +147,161 @@
                         <label for="registration_form_agreeTerms">
                             Lire et accepter
 
-                            <a
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop"
+                            <button
+                                type="button"
+                                class="btn btn-link p-0 align-baseline"
+                                onclick="document.getElementById('cguCard').classList.remove('d-none')"
                             >
                                 les conditions générales d'utilisation
-                            </a>
+                            </button>
                         </label>
 
-                        <div
-                            class="modal fade"
-                            id="staticBackdrop"
-                            tabindex="-1"
-                            aria-labelledby="staticBackdropLabel"
-                            aria-hidden="true"
-                            data-bs-backdrop="false"
-                        >
+                        <div id="cguCard" class="card mt-3 d-none">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h2 class="h5 mb-0">
+                                    Les conditions générales d'utilisation
+                                </h2>
 
-                            <div class="modal-dialog modal-dialog-scrollable">
-
-                                <div class="modal-content">
-
-                                    <div class="modal-header">
-
-                                        <h2 class="modal-title fs-5" id="staticBackdropLabel">
-                                            Les conditions générales d'utilisation
-                                        </h2>
-
-                                        <button
-                                            type="button"
-                                            class="btn-close"
-                                            data-bs-dismiss="modal"
-                                            aria-label="Close"
-                                        ></button>
-
-                                    </div>
-
-                                    <div class="modal-body">
-
-                                        <div class="cgu-container">
-
-                                            <header>
-                                                <p>
-                                                    <strong>Dernière mise à jour :</strong>
-                                                    17 mai 2025
-                                                </p>
-                                            </header>
-
-                                            <section>
-
-                                                <p>
-                                                    Les présentes Conditions Générales d'Utilisation
-                                                    (dites « CGU ») ont pour objet de définir les
-                                                    modalités et conditions dans lesquelles les
-                                                    utilisateurs accèdent et utilisent le site
-                                                    <strong>Regards d'Art par Paul Martin</strong>.
-                                                </p>
-
-                                                <p>
-                                                    Toute navigation sur le Site implique
-                                                    l'acceptation pleine et entière des présentes CGU.
-                                                </p>
-
-                                            </section>
-
-                                            <section>
-
-                                                <h2>1. Présentation du Site</h2>
-
-                                                <p>
-                                                    Le Site est un blog artistique ayant pour objectif
-                                                    de partager des photographies de tableaux,
-                                                    des ressentis personnels et des éléments
-                                                    d'histoire autour d'œuvres d'art.
-                                                </p>
-
-                                                <p>
-                                                    Il met en avant la passion de
-                                                    <strong>Paul Martin</strong>,
-                                                    retraité amateur d'art.
-                                                </p>
-
-                                            </section>
-
-                                            <section>
-
-                                                <h2>2. Accès au Site</h2>
-
-                                                <p>
-                                                    Le Site est accessible gratuitement à tout
-                                                    utilisateur disposant d'un accès à Internet.
-                                                </p>
-
-                                            </section>
-
-                                            <section>
-
-                                                <h2>3. Création de compte et espace utilisateur</h2>
-
-                                                <p>
-                                                    Pour accéder à certaines fonctionnalités,
-                                                    l'utilisateur doit créer un compte personnel.
-                                                </p>
-
-                                                <ul>
-                                                    <li>Fournir des informations exactes</li>
-                                                    <li>Maintenir la confidentialité des identifiants</li>
-                                                    <li>Ne pas usurper l'identité d'un tiers</li>
-                                                </ul>
-
-                                            </section>
-
-                                            <section>
-
-                                                <h2>4. Utilisation des fonctionnalités interactives</h2>
-
-                                                <p>
-                                                    Les utilisateurs s'engagent à publier des contenus
-                                                    respectueux et conformes à la loi.
-                                                </p>
-
-                                            </section>
-
-                                            <section>
-
-                                                <h2>5. Limites des contenus publiés</h2>
-
-                                                <p>
-                                                    Les contenus publiés sur le Site correspondent
-                                                    aux recherches et ressentis personnels
-                                                    de Paul Martin.
-                                                </p>
-
-                                            </section>
-
-                                            <section>
-
-                                                <h2>6. Propriété intellectuelle</h2>
-
-                                                <p>
-                                                    L'ensemble du contenu du Site est protégé
-                                                    par le droit de la propriété intellectuelle.
-                                                </p>
-
-                                            </section>
-
-                                            <section>
-
-                                                <h2>7. Données personnelles</h2>
-
-                                                <p>
-                                                    Le Site collecte et traite des données personnelles
-                                                    conformément au RGPD.
-                                                </p>
-
-                                            </section>
-
-                                            <section>
-
-                                                <h2>8. Contact</h2>
-
-                                                <p>
-                                                    Pour toute question, l'utilisateur peut contacter
-                                                    l'éditeur via le formulaire de contact du Site.
-                                                </p>
-
-                                            </section>
-
-                                            <footer>
-                                                <p>
-                                                    © Regards d’Art - Paul Martin - Tous droits réservés
-                                                </p>
-                                            </footer>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="modal-footer">
-
-                                        <button
-                                            type="button"
-                                            class="btn btn-secondary"
-                                            data-bs-dismiss="modal"
-                                        >
-                                            Fermer
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    aria-label="Fermer"
+                                    onclick="document.getElementById('cguCard').classList.add('d-none')"
+                                ></button>
                             </div>
 
-                        </div>
+                            <div
+                                class="card-body"
+                                style="max-height: 320px; overflow-y: auto;"
+                            >
+                                <div class="cgu-container">
+                                    <header>
+                                        <p>
+                                            <strong>Dernière mise à jour :</strong>
+                                            17 mai 2025
+                                        </p>
+                                    </header>
 
+                                    <section>
+                                        <p>
+                                            Les présentes Conditions Générales d'Utilisation
+                                            (dites « CGU ») ont pour objet de définir les
+                                            modalités et conditions dans lesquelles les
+                                            utilisateurs accèdent et utilisent le site
+                                            <strong>Regards d'Art par Paul Martin</strong>.
+                                        </p>
+
+                                        <p>
+                                            Toute navigation sur le Site implique
+                                            l'acceptation pleine et entière des présentes CGU.
+                                        </p>
+                                    </section>
+
+                                    <section>
+                                        <h2>1. Présentation du Site</h2>
+
+                                        <p>
+                                            Le Site est un blog artistique ayant pour objectif
+                                            de partager des photographies de tableaux,
+                                            des ressentis personnels et des éléments
+                                            d'histoire autour d'œuvres d'art.
+                                        </p>
+
+                                        <p>
+                                            Il met en avant la passion de
+                                            <strong>Paul Martin</strong>,
+                                            retraité amateur d'art.
+                                        </p>
+                                    </section>
+
+                                    <section>
+                                        <h2>2. Accès au Site</h2>
+
+                                        <p>
+                                            Le Site est accessible gratuitement à tout
+                                            utilisateur disposant d'un accès à Internet.
+                                        </p>
+                                    </section>
+
+                                    <section>
+                                        <h2>3. Création de compte et espace utilisateur</h2>
+
+                                        <p>
+                                            Pour accéder à certaines fonctionnalités,
+                                            l'utilisateur doit créer un compte personnel.
+                                        </p>
+
+                                        <ul>
+                                            <li>Fournir des informations exactes</li>
+                                            <li>Maintenir la confidentialité des identifiants</li>
+                                            <li>Ne pas usurper l'identité d'un tiers</li>
+                                        </ul>
+                                    </section>
+
+                                    <section>
+                                        <h2>4. Utilisation des fonctionnalités interactives</h2>
+
+                                        <p>
+                                            Les utilisateurs s'engagent à publier des contenus
+                                            respectueux et conformes à la loi.
+                                        </p>
+                                    </section>
+
+                                    <section>
+                                        <h2>5. Limites des contenus publiés</h2>
+
+                                        <p>
+                                            Les contenus publiés sur le Site correspondent
+                                            aux recherches et ressentis personnels
+                                            de Paul Martin.
+                                        </p>
+                                    </section>
+
+                                    <section>
+                                        <h2>6. Propriété intellectuelle</h2>
+
+                                        <p>
+                                            L'ensemble du contenu du Site est protégé
+                                            par le droit de la propriété intellectuelle.
+                                        </p>
+                                    </section>
+
+                                    <section>
+                                        <h2>7. Données personnelles</h2>
+
+                                        <p>
+                                            Le Site collecte et traite des données personnelles
+                                            conformément au RGPD.
+                                        </p>
+                                    </section>
+
+                                    <section>
+                                        <h2>8. Contact</h2>
+
+                                        <p>
+                                            Pour toute question, l'utilisateur peut contacter
+                                            l'éditeur via le formulaire de contact du Site.
+                                        </p>
+                                    </section>
+
+                                    <footer>
+                                        <p>
+                                            © Regards d’Art - Paul Martin - Tous droits réservés
+                                        </p>
+                                    </footer>
+                                </div>
+                            </div>
+
+                            <div class="card-footer text-end">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary btn-sm"
+                                    onclick="document.getElementById('cguCard').classList.add('d-none')"
+                                >
+                                    Fermer
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div>
@@ -377,7 +316,6 @@
                 {{ form_end(registrationForm) }}
 
                 <div class="d-flex flex-column justify-content-center align-items-center my-4">
-
                     <p>
                         Vous avez déjà un compte ?
                         <a href="{{ path('app_login') }}">
@@ -390,12 +328,8 @@
                             Retour à l'accueil
                         </a>
                     </p>
-
                 </div>
-
             </div>
-
         </main>
-
     </body>
 </html>
